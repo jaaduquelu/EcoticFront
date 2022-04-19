@@ -7,7 +7,7 @@ import CrearTipoInspecion from "./CrearTipoInspecion";
 
 import { asyncCargarJerarquia } from "../../../redux/actions/admin";
 
-export const TiposInspecionesScreen = () => {
+export const TiposInspeccionScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {

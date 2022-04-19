@@ -1,5 +1,6 @@
 import { useIsAuthenticated } from "@azure/msal-react";
-import { Grid, Box, Typography, Card } from "@mui/material/";
+import { Grid, Box, Typography, Card, Button } from "@mui/material/";
+import { Link } from "react-router-dom";
 
 import styles from "../../styles/Home.module.css";
 import Logo from "../../images/ecopetrol.svg";
@@ -13,23 +14,16 @@ const Home = () => {
 
   return (
     <Grid direction="column" alignItems="center" justify="center" container>
-      <img src={Logo} alt="Aro Ecopetrol" width={300} height={200} />
+      <img src={Logo} alt="Aro Ecopetrol" width={400} height={200} />
       <Box sx={{ mt: -6 }} />
+
       <Typography
-        fontSize="3.3rem"
-        sx={{ fontWeight: "bold" }}
-        className={styles.title}
-      >
-        {" "}
-        Bienvenido
-      </Typography>
-      <Typography
-        mt={-1.5}
+        mt={6}
         color="primary"
         fontSize="1.5rem"
         sx={{ fontWeight: "bold" }}
       >
-        Portal de ICP
+        ECOTIC
       </Typography>
       {isAuthenticated ? (
         <img src={ImagenSecurity} alt="Imagen" width={400} height={250} />
@@ -48,11 +42,13 @@ const Home = () => {
                 <Box ml={12}>
                   <Card variant="outlined" sx={{ width: 60 }}>
                     {" "}
-                    <ButtonLogin />{" "}
+                    <Link to="/admin">
+                      <Button variant="contained">IN</Button>
+                    </Link>{" "}
                   </Card>
                 </Box>
                 <Typography mt={2} color="primary" sx={{ fontWeight: "bold" }}>
-                  Dar Click a la huella para Ingresar
+                  Click a la huella para Ingresar
                 </Typography>
               </Box>
             </Grid>

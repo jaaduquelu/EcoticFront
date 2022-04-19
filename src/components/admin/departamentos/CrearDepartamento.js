@@ -1,5 +1,20 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  Grid,
+  Box,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  TextField,
+  Button,
+} from "@mui/material/";
+
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+
+import AddIcon from "@mui/icons-material/Add";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -28,115 +43,78 @@ const CrearDepartamento = () => {
       update_user: Yup.number().required(),
     }),
     onSubmit: (formDepartamento) => {
-      dispatch(asyncCrearDepartamento(formDepartamento));
       formik.handleReset();
     },
   });
 
-  //variable tipo diccionario
-  const estados = useSelector((state) => state.diccionarios.estados);
-
   return (
-    <div className="bg-configuracion py-3">
-      <div className="row">
-        <h2 className="col-10 px-5 pt-3">ADMINISTRACIÓN DE DEPARTAMENTOS</h2>
-        <div className="col-2 d-flex flex-row justify-content-around">
-          <img
-            alt="C"
-            className="btn btn-custom img-fluid"
-            src="/iconosAdmin/btn_Volver.svg"
+    <Box>
+      <Grid container spacing={2} sx={{ py: 1 }}>
+        <Grid item xs={9} md={10}>
+          <h2 className="col-10 px-5 pt-3">ADMINISTRACIÓN DE DEPARTAMENTOS</h2>
+        </Grid>
+        <Grid item xs={3} md={2} container justifyContent="right">
+          <Button
+            variant="contained"
+            type="submit"
             onClick={() => dispatch(cambiarVistaDepartamentosAdmin())}
-          ></img>
-        </div>
-      </div>
+          >
+            Volver
+          </Button>
+        </Grid>
+      </Grid>
+
       <hr></hr>
 
-      <form className="mx-5" onSubmit={formik.handleSubmit}>
-        <div className="border rounded bg-light mx-4 my-5 px-5 py-3">
-          <div className="row my-4">
-            <div className="form-group col-12">
-              <label className="font-weight-bold">NIT *</label>
-              <input
-                className={`form-control ${
-                  formik.errors.documento &&
-                  formik.touched.documento &&
-                  "is-invalid"
-                }`}
-                name="documento"
-                value={formik.values.documento}
-                onChange={formik.handleChange}
-              ></input>
-            </div>
-          </div>
-          <div className="row my-4">
-            <div className="form-group col-12">
-              <label className="font-weight-bold">Nombre *</label>
-              <input
-                type="text"
-                className={`form-control ${
-                  formik.errors.nombre && formik.touched.nombre && "is-invalid"
-                }`}
-                name="nombre"
-                value={formik.values.nombre}
-                onChange={formik.handleChange}
-              ></input>
-            </div>
-          </div>
-          <div className="row my-4">
-            <div className="form-group col-12">
-              <label className="font-weight-bold">Sitio Web *</label>
-              <input
-                className={`form-control ${
-                  formik.errors.sitioWeb &&
-                  formik.touched.sitioWeb &&
-                  "is-invalid"
-                }`}
-                name="sitioWeb"
-                value={formik.values.sitioWeb}
-                onChange={formik.handleChange}
-              ></input>
-            </div>
-          </div>
-          <div className="row my-4">
-            <div className="form-group col-12">
-              <div className="input-group">
-                <div className="input-group-prepend">
-                  <div className="input-group-text font-weight-bold">
-                    Estado *
-                  </div>
-                </div>
-                <select
-                  className={`form-control ${
-                    formik.errors.idEstado &&
-                    formik.touched.idEstado &&
-                    "is-invalid"
-                  }`}
-                  name="idEstado"
-                  value={formik.values.idEstado}
-                  onChange={formik.handleChange}
-                >
-                  <option>Seleccione...</option>
-                  {estados.map((i) => (
-                    <option key={i.id} value={i.id}>
-                      {i.nombre}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="my-3 d-flex justify-content-center">
-          <button type="submit" className="btn">
-            <img
-              alt="C"
-              className="btn btn-custom img-fluid"
-              src="/iconosAdmin/btn_Guardar.svg"
-            ></img>
-          </button>
-        </div>
-      </form>
-    </div>
+      <FormControl fullWidth sx={{ py: 2 }}>
+        <InputLabel id="select-label">Name</InputLabel>
+        <Select
+          labelId="select-label"
+          id="select"
+          value={formik.values.id}
+          onChange={formik.handleChange}
+          margin="normal"
+        >
+          {/* {estados.map((i) => (
+            <MenuItem key={i.id} value={i.id}>
+              {i.nombre}
+            </MenuItem>
+          ))} */}
+        </Select>
+
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              required
+              error={formik.errors.name && formik.touched.name}
+              id="filled-required"
+              label="Nombre"
+              margin="normal"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              required
+              error={formik.errors.name && formik.touched.name}
+              id="filled-required"
+              label="Nombre"
+              margin="normal"
+            />
+          </Grid>
+
+          <Grid item xs={12} md={12}>
+            <Grid container justifyContent="center">
+              <Button variant="contained" type="submit">
+                <AddIcon />
+                CREAR
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      </FormControl>
+    </Box>
   );
 };
 

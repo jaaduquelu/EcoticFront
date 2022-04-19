@@ -25,12 +25,12 @@ function App() {
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           {/* Redux-Persist */}
-          <PersistGate loading={null} persistor={persistStore(store)}>
-            {/* Auth Active Directory de Azure */}
-            <MsalProvider instance={msalInstance}>
-              <AppRouter />
-            </MsalProvider>
-          </PersistGate>
+          {/* <PersistGate loading={null} persistor={persistStore(store)}> */}
+          {/* Auth Active Directory de Azure */}
+          <MsalProvider instance={msalInstance}>
+            <AppRouter />
+          </MsalProvider>
+          {/* </PersistGate> */}
         </Provider>
       </ThemeProvider>
     </>

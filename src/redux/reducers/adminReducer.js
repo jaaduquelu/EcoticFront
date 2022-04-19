@@ -8,6 +8,7 @@ const initialState = {
   materiales: [],
   tiposCML: [],
   accesos: [],
+  otros: [],
 };
 
 export const adminReducer = (state = initialState, action) => {
