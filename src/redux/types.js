@@ -9,4 +9,9 @@ export const types = {
   //UI
   cambiarVistaDepartamentosAdmin:
     "[UI] Cambiar la vista actual de DepartamentosScreen",
+  cambiarVistaUnidadesAdmin: "[UI] Cambiar la vista actual de UnidadesScreen",
+  cambiarVistaConsultaTabularAdmin:
+    "[UI] Cambiar la vista de consulta en admin",
+  vistaConsultaTabularAdmin:
+    "[UI] Inicializar la vista actual de consulta en admin",
 };

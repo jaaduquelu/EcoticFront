@@ -14,10 +14,10 @@ import AddIcon from "@mui/icons-material/Add";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { asyncCrearDepartamento } from "../../../redux/actions/admin";
+import { asyncCrearUnidad } from "../../../redux/actions/admin";
 import { cambiarVistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
-const CrearDepartamento = () => {
+const CrearUnidad = () => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -38,7 +38,7 @@ const CrearDepartamento = () => {
       // creation_user: Yup.number().required(),
       // update_user: Yup.number().required(),
     }),
-    onSubmit: (formDepartamento) => {
+    onSubmit: (formUnidad) => {
       formik.handleReset();
     },
   });
@@ -47,7 +47,7 @@ const CrearDepartamento = () => {
     <Box>
       <Grid container spacing={2} sx={{ py: 1 }}>
         <Grid item xs={9} md={10}>
-          <h2 className="col-10 px-5 pt-3">ADMINISTRACIÓN DE DEPARTAMENTOS</h2>
+          <h2 className="col-10 px-5 pt-3">ADMINISTRACIÓN DE UNIDADES</h2>
         </Grid>
         <Grid item xs={3} md={2} container justifyContent="right">
           <Button
@@ -63,6 +63,21 @@ const CrearDepartamento = () => {
       <hr></hr>
 
       <FormControl fullWidth sx={{ py: 2 }}>
+        {/* <InputLabel id="select-label">Name</InputLabel>
+        <Select
+          labelId="select-label"
+          id="select"
+          value={formik.values.id}
+          onChange={formik.handleChange}
+          margin="normal"
+        >
+         {estados.map((i) => (
+            <MenuItem key={i.id} value={i.id}>
+              {i.nombre}
+            </MenuItem>
+          ))} 
+        </Select> */}
+
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <TextField
@@ -110,4 +125,4 @@ const CrearDepartamento = () => {
   );
 };
 
-export default CrearDepartamento;
+export default CrearUnidad;

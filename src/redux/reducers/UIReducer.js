@@ -3,7 +3,7 @@ import { types } from "../types";
 const initialState = {
   loading: false,
   vistaDepartamentosAdmin: true,
-  vistaUnidadesAdmin: true,
+  vistaConsultaTabularAdmin: true,
 };
 
 export const UIReducer = (state = initialState, action) => {
@@ -20,10 +20,16 @@ export const UIReducer = (state = initialState, action) => {
         loading: false,
       };
 
-    case types.cambiarVistaDepartamentosAdmin:
+    case types.cambiarVistaConsultaTabularAdmin:
       return {
         ...state,
-        vistaDepartamentosAdmin: !state.vistaDepartamentosAdmin,
+        vistaConsultaTabularAdmin: !state.vistaConsultaTabularAdmin,
+      };
+
+    case types.vistaConsultaTabularAdmin:
+      return {
+        ...state,
+        vistaConsultaTabularAdmin: true,
       };
 
     default:

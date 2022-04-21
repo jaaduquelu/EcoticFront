@@ -9,6 +9,7 @@ import ConsultaTabularDepartamentos from "./ConsultaTabularDepartamentos";
 import CrearDepartamento from "./CrearDepartamento";
 
 import { asyncCargarJerarquia } from "../../../redux/actions/admin";
+import ConsultaTabular from "../ConsultaTabular";
 
 export const DepartamentosScreen = () => {
   const dispatch = useDispatch();
@@ -17,11 +18,11 @@ export const DepartamentosScreen = () => {
   //   dispatch(asyncCargarJerarquia());
   // }, []);
 
-  const vistaDepartamentosAdmin = useSelector(
-    (state) => state.UI.vistaDepartamentosAdmin
+  const vistaActual = useSelector(
+    (state) => state.UI.vistaConsultaTabularAdmin
   );
 
-  console.log(vistaDepartamentosAdmin, "estado");
+  const columnas = ["Name", "Company", "City", "State"];
 
   return (
     <>
@@ -33,8 +34,8 @@ export const DepartamentosScreen = () => {
           component="main"
           sx={{ flexGrow: 1, bgcolor: "background.default", py: 1, px: 3 }}
         >
-          {!vistaDepartamentosAdmin ? (
-            <ConsultaTabularDepartamentos />
+          {vistaActual ? (
+            <ConsultaTabular module={"DEPARTAMENTOS"} columns={columnas} />
           ) : (
             <CrearDepartamento />
           )}
