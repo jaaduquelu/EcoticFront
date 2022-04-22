@@ -42,6 +42,10 @@ const SideBarAdmin = () => {
         <ListItem button onClick={() => navigate("/admin/materiales")}>
           Materiales
         </ListItem>
+        <Divider />
+        <ListItem button onClick={() => navigate("/admin/tiposCMLS")}>
+          Tipos de CMLS
+        </ListItem>
       </List>
 
       <Divider />

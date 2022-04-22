@@ -68,20 +68,24 @@ const CrearDepartamento = () => {
             <TextField
               fullWidth
               required
-              error={formik.errors.name && formik.touched.name}
-              id="filled-required"
               label="Nombre"
               margin="normal"
+              name="name"
+              error={formik.errors.name && formik.touched.name}
+              value={formik.values.name}
+              onChange={formik.handleChange}
             />
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
               required
-              error={formik.errors.short_name && formik.touched.short_name}
-              id="filled-required"
               label="Nombre Corto"
               margin="normal"
+              name="short_name"
+              error={formik.errors.short_name && formik.touched.short_name}
+              value={formik.values.short_name}
+              onChange={formik.handleChange}
             />
           </Grid>
 
@@ -89,16 +93,23 @@ const CrearDepartamento = () => {
             <TextField
               fullWidth
               required
-              error={formik.errors.description && formik.touched.description}
-              id="filled-required"
               label="Descripción"
               margin="normal"
+              name="description"
+              error={formik.errors.description && formik.touched.description}
+              value={formik.values.description}
+              onChange={formik.handleChange}
             />
           </Grid>
 
           <Grid item xs={12} md={12}>
             <Grid container justifyContent="center">
-              <Button variant="contained" type="submit" sx={{ my: 3 }}>
+              <Button
+                variant="contained"
+                type="submit"
+                sx={{ my: 3 }}
+                onClick={formik.handleSubmit}
+              >
                 <AddIcon />
                 CREAR
               </Button>

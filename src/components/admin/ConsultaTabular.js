@@ -27,14 +27,16 @@ const ConsultaTabular = ({ module, columns }) => {
   ];
 
   const options = {
-    filterType: "checkbox",
+    filterType: "dropdown",
+    rowsPerPage: 15,
+    responsive: "standard",
   };
 
   return (
     <Box>
       <Grid container spacing={2} sx={{ py: 1 }}>
         <Grid item xs={9} md={10}>
-          <h2 className="col-10 px-5 pt-3">ADMINISTRACIÓN DE {module}</h2>
+          <h2 className="col-10 px-5 pt-3">ADMINISTRACIÓN {module}</h2>
         </Grid>
         <Grid item xs={3} md={2} container justifyContent="right">
           <Button
@@ -55,7 +57,7 @@ const ConsultaTabular = ({ module, columns }) => {
           data={data}
           columns={columns}
           options={options}
-        />
+        ></MUIDataTable>
       </Box>
     </Box>
   );

@@ -1,38 +1,42 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
 
 import SideBarAdmin from "../SideBarAdmin";
-import ConsultaTabularTiposCMLS from "./ConsultaTabularTiposCMLS";
+import ConsultaTabular from "../ConsultaTabular";
 import CrearTipoCML from "./CrearTipoCML";
-
-import { asyncCargarJerarquia } from "../../../redux/actions/admin";
+import { vistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
 export const TiposCMLSScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(asyncCargarJerarquia());
+    dispatch(vistaConsultaTabularAdmin());
   }, []);
 
-  const vistaTiposCMLSAdmin = useSelector(
-    (state) => state.UI.vistaTiposCMLSAdmin
+  const vistaActual = useSelector(
+    (state) => state.UI.vistaConsultaTabularAdmin
   );
+  const columnas = ["Name", "Company", "City", "State"];
 
   return (
     <>
-      <div className="row">
-        <div className="col-2">
-          <SideBarAdmin />
-        </div>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <SideBarAdmin />
 
-        <div className="col-10">
-          {vistaTiposCMLSAdmin ? (
-            <ConsultaTabularTiposCMLS />
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, bgcolor: "background.default", py: 1, px: 3 }}
+        >
+          {vistaActual ? (
+            <ConsultaTabular module="TIPOS DE CMLS" columns={columnas} />
           ) : (
             <CrearTipoCML />
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </>
   );
 };

@@ -4,22 +4,21 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import SideBarAdmin from "../SideBarAdmin";
-import CrearTipoInspeccion from "./CrearTipoInspeccion";
 
-import { asyncCargarJerarquia } from "../../../redux/actions/admin";
 import ConsultaTabular from "../ConsultaTabular";
+import { vistaConsultaTabularAdmin } from "../../../redux/actions/UI";
+import CrearTipoInspeccion from "./CrearTipoInspeccion";
 
 export const TiposInspeccionScreen = () => {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(asyncCargarJerarquia());
-  // }, []);
+  useEffect(() => {
+    dispatch(vistaConsultaTabularAdmin());
+  }, []);
 
   const vistaActual = useSelector(
     (state) => state.UI.vistaConsultaTabularAdmin
   );
-
   const columnas = ["Name", "Company", "City", "State"];
 
   return (
@@ -33,10 +32,7 @@ export const TiposInspeccionScreen = () => {
           sx={{ flexGrow: 1, bgcolor: "background.default", py: 1, px: 3 }}
         >
           {vistaActual ? (
-            <ConsultaTabular
-              module={"TIPOS DE INSPECCIÓN"}
-              columns={columnas}
-            />
+            <ConsultaTabular module="UNIDADES" columns={columnas} />
           ) : (
             <CrearTipoInspeccion />
           )}
