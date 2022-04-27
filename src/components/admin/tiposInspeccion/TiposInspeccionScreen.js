@@ -34,7 +34,8 @@ export const TiposInspeccionScreen = () => {
         >
           {vistaActual ? (
             <ConsultaTabular
-              module={"TIPOS DE INSPECCIÓN"}
+              name="TIPOS DE INSPECCIÓN"
+              module="tiposInspeccion"
               columns={columnas}
             />
           ) : (

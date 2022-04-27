@@ -1,29 +1,27 @@
-import { createTheme  } from '@mui/material/styles';
-import { esES } from '@mui/material/locale'
+import { createTheme } from "@mui/material/styles";
+import { esES } from "@mui/material/locale";
 
-const theme = createTheme ({
-
+const theme = createTheme(
+  {
     palette: {
-      primary:{
-        main:'#006064'
+      primary: {
+        main: "#006064",
       },
-      error:{
-        main: '#ef5350'
+      error: {
+        main: "#ef5350",
       },
-      clearcolor:{
-        main: '#ef5350'
-      },      
-      success:{
-        main: '#4caf50'
+      clearcolor: {
+        main: "#ef5350",
       },
-
+      success: {
+        main: "#4caf50",
+      },
     },
     typography: {
-      // fontSize: 14,
-    }
-
-    
-
-}, esES)
+      fontSize: 14,
+    },
+  },
+  esES
+);
 
 export default theme;

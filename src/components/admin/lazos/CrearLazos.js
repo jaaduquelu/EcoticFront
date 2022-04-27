@@ -4,8 +4,10 @@ import {
   Grid,
   Box,
   Select,
+  InputLabel,
   MenuItem,
   FormControl,
+  FormHelperText,
   TextField,
   Button,
 } from "@mui/material/";
@@ -15,32 +17,32 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { asyncCrearTipoInspeccion } from "../../../redux/actions/admin";
+import { asyncCrearUnidad } from "../../../redux/actions/admin";
 import { cambiarVistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
-const CrearTipoInspeccion = () => {
+export const CrearLazo = () => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
-      id: "",
       name: "",
-      short_name: "",
+      unit_id: null,
       description: "",
-      for_cr: "",
+      comments: "",
       creation_date: new Date().toDateString(),
       creation_user: "",
       update_date: new Date().toDateString(),
       update_user: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required(),
+      name: Yup.string().min(5).required(),
       description: Yup.string().required(),
-      short_name: Yup.string().required(),
+      unit_id: Yup.number().required(),
       // creation_user: Yup.number().required(),
       // update_user: Yup.number().required(),
     }),
-    onSubmit: (formTipoInspeccion) => {
+    onSubmit: (formUnidad) => {
+      console.log(formUnidad);
       formik.handleReset();
     },
   });
@@ -49,7 +51,7 @@ const CrearTipoInspeccion = () => {
     <Box>
       <Grid container spacing={2} sx={{ py: 1 }}>
         <Grid item xs={9} md={10}>
-          <h2>ADMINISTRACIÓN TIPOS DE INSPECCIÓN</h2>
+          <h2>CREAR NUEVO LAZO DE CORROSIÓN</h2>
         </Grid>
         <Grid item xs={3} md={2} container justifyContent="right">
           <Button
@@ -67,6 +69,27 @@ const CrearTipoInspeccion = () => {
 
       <FormControl fullWidth sx={{ py: 2 }}>
         <Grid container spacing={2}>
+          <Grid item xs={6} md={6}>
+            <FormControl
+              fullWidth
+              margin="normal"
+              error={formik.errors.unit_id && formik.touched.unit_id}
+            >
+              <InputLabel id="select-unit">Unidad</InputLabel>
+              <Select
+                labelId="select-unit"
+                label="Unidad"
+                name="unit_id"
+                value={formik.values.unit_id}
+                onChange={formik.handleChange}
+                // renderValue={(value) => `⚠️  - ${value}`}
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
@@ -79,15 +102,16 @@ const CrearTipoInspeccion = () => {
               onChange={formik.handleChange}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+
+          <Grid item xs={12} md={12}>
             <TextField
               fullWidth
-              required
-              label="Nombre Corto"
+              aria-required
+              label="Descripción"
               margin="normal"
-              name="short_name"
-              error={formik.errors.short_name && formik.touched.short_name}
-              value={formik.values.short_name}
+              name="description"
+              error={formik.errors.description && formik.touched.description}
+              value={formik.values.description}
               onChange={formik.handleChange}
             />
           </Grid>
@@ -95,12 +119,12 @@ const CrearTipoInspeccion = () => {
           <Grid item xs={12} md={12}>
             <TextField
               fullWidth
-              required
-              label="Descripción"
+              aria-required
+              label="Comentarios"
               margin="normal"
-              name="description"
-              error={formik.errors.description && formik.touched.description}
-              value={formik.values.description}
+              name="comments"
+              error={formik.errors.comments && formik.touched.comments}
+              value={formik.values.comments}
               onChange={formik.handleChange}
             />
           </Grid>
@@ -123,5 +147,3 @@ const CrearTipoInspeccion = () => {
     </Box>
   );
 };
-
-export default CrearTipoInspeccion;

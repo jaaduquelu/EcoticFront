@@ -22,7 +22,15 @@ export const DepartamentosScreen = () => {
     (state) => state.UI.vistaConsultaTabularAdmin
   );
 
-  const columnas = ["Name", "Company", "City", "State"];
+  const columnas = [
+    "ID",
+    "Nombre",
+    "Descripción",
+    "Fecha Creación",
+    "Usuario Creación",
+    "Fecha Actualización",
+    "Usuario Actualización",
+  ];
 
   return (
     <>
@@ -35,7 +43,11 @@ export const DepartamentosScreen = () => {
           sx={{ flexGrow: 1, bgcolor: "background.default", py: 1, px: 3 }}
         >
           {vistaActual ? (
-            <ConsultaTabular module={"DEPARTAMENTOS"} columns={columnas} />
+            <ConsultaTabular
+              name="DEPARTAMENTOS"
+              module="departamentos"
+              columns={columnas}
+            />
           ) : (
             <CrearDepartamento />
           )}

@@ -5,8 +5,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import SideBarAdmin from "../SideBarAdmin";
 import CrearUnidad from "./CrearUnidad";
-
 import ConsultaTabular from "../ConsultaTabular";
+
 import { vistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
 export const UnidadesScreen = () => {
@@ -19,7 +19,16 @@ export const UnidadesScreen = () => {
   const vistaActual = useSelector(
     (state) => state.UI.vistaConsultaTabularAdmin
   );
-  const columnas = ["Name", "Company", "City", "State"];
+  const columnas = [
+    "ID",
+    "Departamento",
+    "Nombre",
+    "Descripción",
+    "Fecha Creación",
+    "Usuario Creación",
+    "Fecha Actualización",
+    "Usuario Actualización",
+  ];
 
   return (
     <>
@@ -32,7 +41,11 @@ export const UnidadesScreen = () => {
           sx={{ flexGrow: 1, bgcolor: "background.default", py: 1, px: 3 }}
         >
           {vistaActual ? (
-            <ConsultaTabular module="UNIDADES" columns={columnas} />
+            <ConsultaTabular
+              name="UNIDADES"
+              module="unidades"
+              columns={columnas}
+            />
           ) : (
             <CrearUnidad />
           )}

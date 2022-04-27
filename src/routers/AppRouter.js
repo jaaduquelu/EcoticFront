@@ -38,6 +38,15 @@ export const AppRouter = () => {
         <Route path="/Error404" component={Error404} />
 
         <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <LoginScreen />
+            </PublicRoute>
+          }
+        />
+
+        <Route
           path="/login"
           element={
             <PublicRoute>

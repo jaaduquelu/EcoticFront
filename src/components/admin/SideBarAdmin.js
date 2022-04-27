@@ -1,7 +1,15 @@
 import React from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 
-import { Drawer, List, ListItem, Divider } from "@mui/material";
+import {
+  Drawer,
+  List,
+  ListItemButton,
+  ListItemText,
+  ListItemIcon,
+  Divider,
+} from "@mui/material";
+import DraftsIcon from "@mui/icons-material/Drafts";
 
 const SideBarAdmin = () => {
   const drawerWidth = 300;
@@ -23,29 +31,50 @@ const SideBarAdmin = () => {
       anchor="left"
     >
       <List>
-        <ListItem button onClick={() => navigate("/admin/departamentos")}>
-          Departamentos
-        </ListItem>
+        <ListItemButton
+          // selected={selectedIndex === 0}
+          onClick={() => navigate("/admin/departamentos")}
+        >
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText>Departamentos</ListItemText>
+        </ListItemButton>
         <Divider />
-        <ListItem button onClick={() => navigate("/admin/unidades")}>
-          Unidades
-        </ListItem>
+        <ListItemButton onClick={() => navigate("/admin/unidades")}>
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText>Unidades</ListItemText>
+        </ListItemButton>
         <Divider />
-        <ListItem button onClick={() => navigate("/admin/lazos")}>
-          Lazos de corroción
-        </ListItem>
+        <ListItemButton onClick={() => navigate("/admin/lazos")}>
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText>Lazos de corroción</ListItemText>
+        </ListItemButton>
         <Divider />
-        <ListItem button onClick={() => navigate("/admin/tiposInspeccion")}>
-          Tipos de Inspección
-        </ListItem>
+        <ListItemButton onClick={() => navigate("/admin/tiposInspeccion")}>
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText>Tipos de Inspección</ListItemText>
+        </ListItemButton>
         <Divider />
-        <ListItem button onClick={() => navigate("/admin/materiales")}>
-          Materiales
-        </ListItem>
+        <ListItemButton onClick={() => navigate("/admin/materiales")}>
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText>Materiales</ListItemText>
+        </ListItemButton>
         <Divider />
-        <ListItem button onClick={() => navigate("/admin/tiposCMLS")}>
-          Tipos de CMLS
-        </ListItem>
+        <ListItemButton onClick={() => navigate("/admin/tiposCMLS")}>
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText>Tipos de CMLS</ListItemText>
+        </ListItemButton>
       </List>
 
       <Divider />

@@ -31,7 +31,11 @@ export const TiposCMLSScreen = () => {
           sx={{ flexGrow: 1, bgcolor: "background.default", py: 1, px: 3 }}
         >
           {vistaActual ? (
-            <ConsultaTabular module="TIPOS DE CMLS" columns={columnas} />
+            <ConsultaTabular
+              name="TIPOS DE CMLS"
+              module="tiposCMLS"
+              columns={columnas}
+            />
           ) : (
             <CrearTipoCML />
           )}

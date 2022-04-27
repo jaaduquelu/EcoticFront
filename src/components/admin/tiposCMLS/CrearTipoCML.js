@@ -11,6 +11,7 @@ import {
 } from "@mui/material/";
 
 import AddIcon from "@mui/icons-material/Add";
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -54,7 +55,7 @@ const CrearTipoCML = () => {
     <Box>
       <Grid container spacing={2} sx={{ py: 1 }}>
         <Grid item xs={9} md={10}>
-          <h2 className="col-10 px-5 pt-3">ADMINISTRACIÓN TIPOS DE CMLS</h2>
+          <h2>ADMINISTRACIÓN TIPOS DE CMLS</h2>
         </Grid>
         <Grid item xs={3} md={2} container justifyContent="right">
           <Button
@@ -62,6 +63,7 @@ const CrearTipoCML = () => {
             type="submit"
             onClick={() => dispatch(cambiarVistaConsultaTabularAdmin())}
           >
+            <KeyboardReturnIcon />
             Volver
           </Button>
         </Grid>
