@@ -13,6 +13,7 @@ import {
 } from "@mui/material/";
 
 import AddIcon from "@mui/icons-material/Add";
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -35,17 +36,6 @@ const CrearMaterial = () => {
       p_no: "",
       product_form: "",
       s_100: 0,
-      s_1000: 0,
-      s_1050: 0,
-      s_1100: 0,
-      s_1150: 0,
-      s_1200: 0,
-      s_1250: 0,
-      s_1300: 0,
-      s_1350: 0,
-      s_1400: 0,
-      s_1450: 0,
-      s_1500: 0,
       s_200: 0,
       s_300: 0,
       s_400: 0,
@@ -58,9 +48,20 @@ const CrearMaterial = () => {
       s_850: 0,
       s_900: 0,
       s_950: 0,
+      s_1000: 0,
+      s_1050: 0,
+      s_1100: 0,
+      s_1150: 0,
+      s_1200: 0,
+      s_1250: 0,
+      s_1300: 0,
+      s_1350: 0,
+      s_1400: 0,
+      s_1450: 0,
+      s_1500: 0,
       size: "",
-      smts: 0,
-      smys: 0,
+      smts: undefined,
+      smys: undefined,
       specification: "",
       uns: "",
       w: 0,
@@ -92,7 +93,7 @@ const CrearMaterial = () => {
     <Box>
       <Grid container spacing={2} sx={{ py: 1 }}>
         <Grid item xs={9} md={10}>
-          <h2>ADMINISTRACIÓN MATERIALES</h2>
+          <h2>NUEVO MATERIAL</h2>
         </Grid>
         <Grid item xs={3} md={2} container justifyContent="right">
           <Button
@@ -100,6 +101,7 @@ const CrearMaterial = () => {
             type="submit"
             onClick={() => dispatch(cambiarVistaConsultaTabularAdmin())}
           >
+            <KeyboardReturnIcon />
             Volver
           </Button>
         </Grid>
@@ -109,46 +111,369 @@ const CrearMaterial = () => {
 
       <FormControl fullWidth sx={{ py: 2 }}>
         <Grid container spacing={2}>
-          <Grid item xs={6} md={6}>
-            <FormControl
+          <Grid item xs={12} md={6}>
+            <TextField
               fullWidth
+              label="Grupo Material"
               margin="normal"
-              error={formik.errors.class && formik.touched.class}
-            >
-              <InputLabel id="select-department">Departamento</InputLabel>
-              <Select
-                labelId="select-department"
-                label="Departamento"
-                name="class"
-                value={formik.values.class}
-                onChange={formik.handleChange}
-                // renderValue={(value) => `⚠️  - ${value}`}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
+              name="material_group"
+              error={
+                formik.errors.material_group && formik.touched.material_group
+              }
+              value={formik.values.material_group}
+              onChange={formik.handleChange}
+            />
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
-              required
-              error={formik.errors.name && formik.touched.name}
-              name="name"
-              label="Nombre"
+              label="Material"
               margin="normal"
+              name="material"
+              error={formik.errors.material && formik.touched.material}
+              value={formik.values.material}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              label="Forma del producto"
+              margin="normal"
+              name="product_form"
+              error={formik.errors.product_form && formik.touched.product_form}
+              value={formik.values.product_form}
+              onChange={formik.handleChange}
             />
           </Grid>
 
-          <Grid item xs={12} md={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               fullWidth
-              required
-              error={formik.errors.description && formik.touched.description}
-              name="description"
-              label="Descripción"
+              label="Nombre"
               margin="normal"
+              name="name"
+              error={formik.errors.name && formik.touched.name}
+              value={formik.values.name}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              label="Especificación"
+              margin="normal"
+              name="specification"
+              error={
+                formik.errors.specification && formik.touched.specification
+              }
+              value={formik.values.specification}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              label="Grado"
+              margin="normal"
+              name="grade"
+              error={formik.errors.grade && formik.touched.grade}
+              value={formik.values.grade}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              label="Codigo Aplicable"
+              margin="normal"
+              name="w"
+              error={formik.errors.w && formik.touched.w}
+              value={formik.values.w}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              label="Uns"
+              margin="normal"
+              name="uns"
+              error={formik.errors.uns && formik.touched.uns}
+              value={formik.values.uns}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              label="Clase"
+              margin="normal"
+              name="class"
+              error={formik.errors.class && formik.touched.class}
+              value={formik.values.class}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              label="Tamaño"
+              margin="normal"
+              name="size"
+              error={formik.errors.size && formik.touched.size}
+              value={formik.values.size}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              label="P No"
+              margin="normal"
+              name="p_no"
+              error={formik.errors.p_no && formik.touched.p_no}
+              value={formik.values.p_no}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              label="Temp Min"
+              margin="normal"
+              name="min_temp"
+              error={formik.errors.min_temp && formik.touched.min_temp}
+              value={formik.values.min_temp}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              label="Notas"
+              margin="normal"
+              name="notes"
+              error={formik.errors.notes && formik.touched.notes}
+              value={formik.values.notes}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Smts"
+              margin="normal"
+              name="smts"
+              error={formik.errors.smts && formik.touched.smts}
+              value={formik.values.smts}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Smys"
+              margin="normal"
+              name="smys"
+              error={formik.errors.smys && formik.touched.smys}
+              value={formik.values.smys}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 100"
+              margin="normal"
+              name="s_100"
+              error={formik.errors.s_100 && formik.touched.s_100}
+              value={formik.values.s_100}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 200"
+              margin="normal"
+              name="s_200"
+              error={formik.errors.s_200 && formik.touched.s_200}
+              value={formik.values.s_200}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 300"
+              margin="normal"
+              name="s_300"
+              error={formik.errors.s_300 && formik.touched.s_300}
+              value={formik.values.s_300}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 400"
+              margin="normal"
+              name="s_400"
+              error={formik.errors.s_400 && formik.touched.s_400}
+              value={formik.values.s_400}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 500"
+              margin="normal"
+              name="s_500"
+              error={formik.errors.s_500 && formik.touched.s_500}
+              value={formik.values.s_500}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 600"
+              margin="normal"
+              name="s_600"
+              error={formik.errors.s_600 && formik.touched.s_600}
+              value={formik.values.s_600}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 650"
+              margin="normal"
+              name="s_650"
+              error={formik.errors.s_650 && formik.touched.s_650}
+              value={formik.values.s_650}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 700"
+              margin="normal"
+              name="s_700"
+              error={formik.errors.s_700 && formik.touched.s_700}
+              value={formik.values.s_700}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 750"
+              margin="normal"
+              name="s_750"
+              error={formik.errors.s_750 && formik.touched.s_750}
+              value={formik.values.s_750}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 800"
+              margin="normal"
+              name="s_800"
+              error={formik.errors.s_800 && formik.touched.s_800}
+              value={formik.values.s_800}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 850"
+              margin="normal"
+              name="s_850"
+              error={formik.errors.s_850 && formik.touched.s_850}
+              value={formik.values.s_850}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 900"
+              margin="normal"
+              name="s_900"
+              error={formik.errors.s_900 && formik.touched.s_900}
+              value={formik.values.s_900}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 950"
+              margin="normal"
+              name="s_950"
+              error={formik.errors.s_950 && formik.touched.s_950}
+              value={formik.values.s_950}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 1000"
+              margin="normal"
+              name="s_1000"
+              error={formik.errors.s_1000 && formik.touched.s_1000}
+              value={formik.values.s_1000}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 1050"
+              margin="normal"
+              name="s_1050"
+              error={formik.errors.s_1050 && formik.touched.s_1050}
+              value={formik.values.s_1050}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="S 1100"
+              margin="normal"
+              name="s_1100"
+              error={formik.errors.s_1100 && formik.touched.s_1100}
+              value={formik.values.s_1100}
+              onChange={formik.handleChange}
             />
           </Grid>
 

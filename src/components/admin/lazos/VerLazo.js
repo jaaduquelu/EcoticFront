@@ -14,7 +14,8 @@ import {
   Button,
 } from "@mui/material/";
 
-import AddIcon from "@mui/icons-material/Add";
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import { Autorenew } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -69,6 +70,7 @@ export const VerLazo = () => {
                 type="submit"
                 onClick={() => navigate(-1)} //USAR HISTORY
               >
+                <KeyboardReturnIcon />
                 Volver
               </Button>
             </Grid>
@@ -148,18 +150,37 @@ export const VerLazo = () => {
                     sx={{ my: 3 }}
                     onClick={formik.handleSubmit}
                   >
-                    <AddIcon />
+                    <Autorenew />
                     ACTUALIZAR
                   </Button>
                 </Grid>
               </Grid>
             </Grid>
           </FormControl>
+
           <hr></hr>
           {/* Pendiente consulta tabular de circuitos relacionados */}
           <Grid container spacing={2} sx={{ py: 1 }}>
             <Grid item xs={12} md={12}>
               <h2>Circuitos Relacionados</h2>
+            </Grid>
+            <Grid item xs={12} md={12}>
+              <Box sx={{ my: 3 }}>
+                {/* <MUIDataTable
+              title={"Circuitos Relacionados"}
+              data={data}
+              columns={columns}
+              options={options}
+            ></MUIDataTable> */}
+              </Box>
+            </Grid>
+          </Grid>
+
+          <hr></hr>
+          {/* Pendiente consulta tabular de grupos relacionados */}
+          <Grid container spacing={2} sx={{ py: 1 }}>
+            <Grid item xs={12} md={12}>
+              <h2>Grupos Relacionados</h2>
             </Grid>
             <Grid item xs={12} md={12}>
               <Box sx={{ my: 3 }}>

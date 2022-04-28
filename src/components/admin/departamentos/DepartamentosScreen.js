@@ -5,11 +5,10 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import SideBarAdmin from "../SideBarAdmin";
-import ConsultaTabularDepartamentos from "./ConsultaTabularDepartamentos";
 import CrearDepartamento from "./CrearDepartamento";
 
 import { asyncCargarJerarquia } from "../../../redux/actions/admin";
-import ConsultaTabular from "../ConsultaTabular";
+import ConsultaTabular from "../ConsultaTabularAdmin";
 
 export const DepartamentosScreen = () => {
   const dispatch = useDispatch();

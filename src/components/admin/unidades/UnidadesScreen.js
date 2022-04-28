@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import SideBarAdmin from "../SideBarAdmin";
 import CrearUnidad from "./CrearUnidad";
-import ConsultaTabular from "../ConsultaTabular";
+import ConsultaTabular from "../ConsultaTabularAdmin";
 
 import { vistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 

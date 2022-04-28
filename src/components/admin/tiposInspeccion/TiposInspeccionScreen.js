@@ -7,7 +7,7 @@ import SideBarAdmin from "../SideBarAdmin";
 import CrearTipoInspeccion from "./CrearTipoInspeccion";
 
 import { asyncCargarJerarquia } from "../../../redux/actions/admin";
-import ConsultaTabular from "../ConsultaTabular";
+import ConsultaTabular from "../ConsultaTabularAdmin";
 
 export const TiposInspeccionScreen = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,17 @@ export const TiposInspeccionScreen = () => {
     (state) => state.UI.vistaConsultaTabularAdmin
   );
 
-  const columnas = ["Name", "Company", "City", "State"];
+  const columnas = [
+    "ID",
+    "Nombre",
+    "Nombre corto",
+    "Descripción",
+    "For Cr",
+    "Fecha Creación",
+    "Usuario Creación",
+    "Fecha Actualización",
+    "Usuario Actualización",
+  ];
 
   return (
     <>

@@ -51,7 +51,7 @@ export const CrearLazo = () => {
     <Box>
       <Grid container spacing={2} sx={{ py: 1 }}>
         <Grid item xs={9} md={10}>
-          <h2>CREAR NUEVO LAZO DE CORROSIÓN</h2>
+          <h2>NUEVO LAZO DE CORROSIÓN</h2>
         </Grid>
         <Grid item xs={3} md={2} container justifyContent="right">
           <Button

@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import SideBarAdmin from "../SideBarAdmin";
-import ConsultaTabular from "../ConsultaTabular";
+import ConsultaTabular from "../ConsultaTabularAdmin";
 import { CrearLazo } from "./CrearLazos";
 
 import { vistaConsultaTabularAdmin } from "../../../redux/actions/UI";

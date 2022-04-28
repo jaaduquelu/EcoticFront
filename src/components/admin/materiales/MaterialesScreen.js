@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import SideBarAdmin from "../SideBarAdmin";
-import ConsultaTabular from "../ConsultaTabular";
+import ConsultaTabular from "../ConsultaTabularAdmin";
 import CrearMaterial from "./CrearMaterial";
 
 import { vistaConsultaTabularAdmin } from "../../../redux/actions/UI";
@@ -19,7 +19,24 @@ export const MaterialesScreen = () => {
   const vistaActual = useSelector(
     (state) => state.UI.vistaConsultaTabularAdmin
   );
-  const columnas = ["Name", "Company", "City", "State"];
+  const columnas = [
+    "ID",
+    "Grupo",
+    "Forma",
+    "Material",
+    "Nombre",
+    "Especificación",
+    "Grado",
+    "Codigo",
+    "Uns",
+    "Clase",
+    "Tamaño",
+    "P No",
+    "Notas",
+    "Temp Min",
+    "Smts",
+    "Smys",
+  ];
 
   return (
     <>

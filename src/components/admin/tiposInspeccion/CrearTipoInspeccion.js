@@ -4,8 +4,9 @@ import {
   Grid,
   Box,
   Select,
-  MenuItem,
+  Checkbox,
   FormControl,
+  FormControlLabel,
   TextField,
   Button,
 } from "@mui/material/";
@@ -27,7 +28,7 @@ const CrearTipoInspeccion = () => {
       name: "",
       short_name: "",
       description: "",
-      for_cr: "",
+      for_cr: false,
       creation_date: new Date().toDateString(),
       creation_user: "",
       update_date: new Date().toDateString(),
@@ -41,7 +42,8 @@ const CrearTipoInspeccion = () => {
       // update_user: Yup.number().required(),
     }),
     onSubmit: (formTipoInspeccion) => {
-      formik.handleReset();
+      console.log(formTipoInspeccion);
+      // formik.handleReset();
     },
   });
 
@@ -49,7 +51,7 @@ const CrearTipoInspeccion = () => {
     <Box>
       <Grid container spacing={2} sx={{ py: 1 }}>
         <Grid item xs={9} md={10}>
-          <h2>ADMINISTRACIÓN TIPOS DE INSPECCIÓN</h2>
+          <h2>NUEVO TIPO DE INSPECCIÓN</h2>
         </Grid>
         <Grid item xs={3} md={2} container justifyContent="right">
           <Button
@@ -92,7 +94,22 @@ const CrearTipoInspeccion = () => {
             />
           </Grid>
 
-          <Grid item xs={12} md={12}>
+          <Grid item xs={12} md={2}>
+            <FormControlLabel
+              sx={{ py: 3 }}
+              control={
+                <Checkbox
+                  name="for_cr"
+                  checked={formik.values.for_cr}
+                  onChange={formik.handleChange}
+                  color="success"
+                />
+              }
+              label="For Cr"
+            />
+          </Grid>
+
+          <Grid item xs={12} md={10}>
             <TextField
               fullWidth
               required
