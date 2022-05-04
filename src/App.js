@@ -8,8 +8,6 @@ import { AppRouter } from "./routers/AppRouter";
 
 // Redux
 import { Provider } from "react-redux";
-import { PersistGate } from "reduxjs-toolkit-persist/integration/react";
-import { persistStore } from "reduxjs-toolkit-persist";
 
 // Azure
 import { PublicClientApplication } from "@azure/msal-browser";
