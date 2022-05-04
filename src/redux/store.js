@@ -1,7 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import { persistReducer } from "reduxjs-toolkit-persist";
-import storage from "reduxjs-toolkit-persist/lib/storage";
 
 //Reducers
 import { authReducer } from "./reducers/authReducer";
@@ -19,15 +17,6 @@ const reducers = combineReducers({
   UI: UIReducer,
   admin: adminReducer,
 });
-
-const persistConfig = {
-  key: "root",
-  storage,
-  // blacklist: ['navigation'], // navigation sin persistencia
-  // whitelist: ['navigation'], // Sólo navigation con persistencia
-};
-
-const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
