@@ -6,7 +6,7 @@ RUN npm install node-sass
 RUN npm install
 RUN npm run build --prod
 
-FROM nginx AS publish
+FROM nginx:stable AS publish
 RUN apt-get update && apt-get install -y nginx-extras
 WORKDIR /app
 COPY --from=build /app/build /var/wwww
