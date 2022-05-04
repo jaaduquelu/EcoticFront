@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 
-import SideBarAdmin from "../SideBarAdmin";
 import ConsultaTabular from "../ConsultaTabularAdmin";
 import { CrearLazo } from "./CrearLazos";
 
@@ -32,22 +29,15 @@ export const LazosScreen = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <SideBarAdmin />
-
-        <Box component="main" sx={{ flexGrow: 1, py: 1, px: 3 }}>
-          {vistaActual ? (
-            <ConsultaTabular
-              name="LAZOS DE CORROSIÓN"
-              module="lazos"
-              columns={columnas}
-            />
-          ) : (
-            <CrearLazo />
-          )}
-        </Box>
-      </Box>
+      {vistaActual ? (
+        <ConsultaTabular
+          name="LAZOS DE CORROSIÓN"
+          module="lazos"
+          columns={columnas}
+        />
+      ) : (
+        <CrearLazo />
+      )}
     </>
   );
 };

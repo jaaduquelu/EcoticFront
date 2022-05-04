@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-
-import SideBarAdmin from "../SideBarAdmin";
 import ConsultaTabular from "../ConsultaTabularAdmin";
 import CrearMaterial from "./CrearMaterial";
 
@@ -40,25 +36,15 @@ export const MaterialesScreen = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <SideBarAdmin />
-
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, bgcolor: "background.default", py: 1, px: 3 }}
-        >
-          {vistaActual ? (
-            <ConsultaTabular
-              name="MATERIALES"
-              module="materiales"
-              columns={columnas}
-            />
-          ) : (
-            <CrearMaterial />
-          )}
-        </Box>
-      </Box>
+      {vistaActual ? (
+        <ConsultaTabular
+          name="MATERIALES"
+          module="materiales"
+          columns={columnas}
+        />
+      ) : (
+        <CrearMaterial />
+      )}
     </>
   );
 };

@@ -10,15 +10,15 @@ import {
   Divider,
 } from "@mui/material";
 import DraftsIcon from "@mui/icons-material/Drafts";
+import Toolbar from "@mui/material/Toolbar";
 
-const SideBarAdmin = () => {
-  const drawerWidth = 300;
-
+const SideBarAdmin = ({ drawerWidth }) => {
   let navigate = useNavigate();
 
   return (
     <Drawer
       sx={{
+        my: 5,
         width: drawerWidth,
         flexShrink: 0,
         "& .MuiDrawer-paper": {
@@ -26,10 +26,11 @@ const SideBarAdmin = () => {
           boxSizing: "border-box",
         },
       }}
-      header="false"
+      header="true"
       variant="permanent"
       anchor="left"
     >
+      <Toolbar />
       <List>
         <ListItemButton
           // selected={selectedIndex === 0}
@@ -76,8 +77,6 @@ const SideBarAdmin = () => {
           <ListItemText>Tipos de CMLS</ListItemText>
         </ListItemButton>
       </List>
-
-      <Divider />
     </Drawer>
   );
 };

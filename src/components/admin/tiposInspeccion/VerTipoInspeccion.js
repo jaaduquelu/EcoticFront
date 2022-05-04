@@ -19,7 +19,6 @@ import { Autorenew } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import SideBarAdmin from "../SideBarAdmin";
 import { asyncCrearUnidad } from "../../../redux/actions/admin";
 
 export const VerTipoInspeccion = () => {
@@ -55,103 +54,94 @@ export const VerTipoInspeccion = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <SideBarAdmin />
+      <Grid container spacing={2} sx={{ py: 1 }}>
+        <Grid item xs={9} md={10}>
+          <h2>INFORMACIÓN TIPO INSPECCIÓN # {idTipoInspeccion}</h2>
+        </Grid>
+        <Grid item xs={3} md={2} container justifyContent="right">
+          <Button
+            variant="contained"
+            type="submit"
+            onClick={() => navigate(-1)} //USAR HISTORY
+          >
+            <KeyboardReturnIcon />
+            Volver
+          </Button>
+        </Grid>
+      </Grid>
 
-        <Box component="main" sx={{ flexGrow: 1, py: 1, px: 3 }}>
-          <Grid container spacing={2} sx={{ py: 1 }}>
-            <Grid item xs={9} md={10}>
-              <h2>INFORMACIÓN TIPO INSPECCIÓN # {idTipoInspeccion}</h2>
-            </Grid>
-            <Grid item xs={3} md={2} container justifyContent="right">
+      <hr></hr>
+
+      <FormControl fullWidth sx={{ py: 2 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              required
+              label="Nombre"
+              margin="normal"
+              name="name"
+              error={formik.errors.name && formik.touched.name}
+              value={formik.values.name}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              required
+              label="Nombre Corto"
+              margin="normal"
+              name="short_name"
+              error={formik.errors.short_name && formik.touched.short_name}
+              value={formik.values.short_name}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={2}>
+            <FormControlLabel
+              sx={{ py: 3 }}
+              control={
+                <Checkbox
+                  name="for_cr"
+                  checked={formik.values.for_cr}
+                  onChange={formik.handleChange}
+                  color="success"
+                />
+              }
+              label="For Cr"
+            />
+          </Grid>
+
+          <Grid item xs={12} md={10}>
+            <TextField
+              fullWidth
+              required
+              label="Descripción"
+              margin="normal"
+              name="description"
+              error={formik.errors.description && formik.touched.description}
+              value={formik.values.description}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={12}>
+            <Grid container justifyContent="center">
               <Button
                 variant="contained"
                 type="submit"
-                onClick={() => navigate(-1)} //USAR HISTORY
+                sx={{ my: 3 }}
+                onClick={formik.handleSubmit}
               >
-                <KeyboardReturnIcon />
-                Volver
+                <Autorenew />
+                ACTUALIZAR
               </Button>
             </Grid>
           </Grid>
-
-          <hr></hr>
-
-          <FormControl fullWidth sx={{ py: 2 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  fullWidth
-                  required
-                  label="Nombre"
-                  margin="normal"
-                  name="name"
-                  error={formik.errors.name && formik.touched.name}
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  fullWidth
-                  required
-                  label="Nombre Corto"
-                  margin="normal"
-                  name="short_name"
-                  error={formik.errors.short_name && formik.touched.short_name}
-                  value={formik.values.short_name}
-                  onChange={formik.handleChange}
-                />
-              </Grid>
-
-              <Grid item xs={12} md={2}>
-                <FormControlLabel
-                  sx={{ py: 3 }}
-                  control={
-                    <Checkbox
-                      name="for_cr"
-                      checked={formik.values.for_cr}
-                      onChange={formik.handleChange}
-                      color="success"
-                    />
-                  }
-                  label="For Cr"
-                />
-              </Grid>
-
-              <Grid item xs={12} md={10}>
-                <TextField
-                  fullWidth
-                  required
-                  label="Descripción"
-                  margin="normal"
-                  name="description"
-                  error={
-                    formik.errors.description && formik.touched.description
-                  }
-                  value={formik.values.description}
-                  onChange={formik.handleChange}
-                />
-              </Grid>
-
-              <Grid item xs={12} md={12}>
-                <Grid container justifyContent="center">
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    sx={{ my: 3 }}
-                    onClick={formik.handleSubmit}
-                  >
-                    <Autorenew />
-                    ACTUALIZAR
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-          </FormControl>
-        </Box>
-      </Box>
+        </Grid>
+      </FormControl>
     </>
   );
 };

@@ -34,25 +34,15 @@ export const TiposInspeccionScreen = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <SideBarAdmin />
-
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, bgcolor: "background.default", py: 1, px: 3 }}
-        >
-          {vistaActual ? (
-            <ConsultaTabular
-              name="TIPOS DE INSPECCIÓN"
-              module="tiposInspeccion"
-              columns={columnas}
-            />
-          ) : (
-            <CrearTipoInspeccion />
-          )}
-        </Box>
-      </Box>
+      {vistaActual ? (
+        <ConsultaTabular
+          name="TIPOS DE INSPECCIÓN"
+          module="tiposInspeccion"
+          columns={columnas}
+        />
+      ) : (
+        <CrearTipoInspeccion />
+      )}
     </>
   );
 };

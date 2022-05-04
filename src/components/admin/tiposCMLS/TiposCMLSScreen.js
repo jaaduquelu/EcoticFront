@@ -22,25 +22,15 @@ export const TiposCMLSScreen = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <SideBarAdmin />
-
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, bgcolor: "background.default", py: 1, px: 3 }}
-        >
-          {vistaActual ? (
-            <ConsultaTabular
-              name="TIPOS DE CMLS"
-              module="tiposCMLS"
-              columns={columnas}
-            />
-          ) : (
-            <CrearTipoCML />
-          )}
-        </Box>
-      </Box>
+      {vistaActual ? (
+        <ConsultaTabular
+          name="TIPOS DE CMLS"
+          module="tiposCMLS"
+          columns={columnas}
+        />
+      ) : (
+        <CrearTipoCML />
+      )}
     </>
   );
 };

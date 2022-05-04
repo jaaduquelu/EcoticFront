@@ -58,93 +58,88 @@ export const VerDepartamento = () => {
   });
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <SideBarAdmin />
+    <>
+      <Grid container spacing={2} sx={{ py: 1 }}>
+        <Grid item xs={9} md={10}>
+          <h2 className="col-10 px-5 pt-3">
+            INFORMACIÓN DEPARTAMENTO # {idDepartamento}
+          </h2>
+        </Grid>
+        <Grid item xs={3} md={2} container justifyContent="right">
+          <Button
+            variant="contained"
+            type="submit"
+            onClick={() => navigate(-1)}
+          >
+            <KeyboardReturnIcon />
+            Volver
+          </Button>
+        </Grid>
+      </Grid>
 
-      <Box component="main" sx={{ flexGrow: 1, py: 1, px: 3 }}>
-        <Grid container spacing={2} sx={{ py: 1 }}>
-          <Grid item xs={9} md={10}>
-            <h2 className="col-10 px-5 pt-3">
-              INFORMACIÓN DEPARTAMENTO # {idDepartamento}
-            </h2>
+      <hr></hr>
+
+      <FormControl fullWidth sx={{ py: 2 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              required
+              error={formik.errors.name && formik.touched.name}
+              id="filled-required"
+              label="Nombre"
+              margin="normal"
+            />
           </Grid>
-          <Grid item xs={3} md={2} container justifyContent="right">
-            <Button
-              variant="contained"
-              type="submit"
-              onClick={() => navigate(-1)}
-            >
-              <KeyboardReturnIcon />
-              Volver
-            </Button>
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              required
+              error={formik.errors.short_name && formik.touched.short_name}
+              id="filled-required"
+              label="Nombre Corto"
+              margin="normal"
+            />
+          </Grid>
+
+          <Grid item xs={12} md={12}>
+            <TextField
+              fullWidth
+              required
+              error={formik.errors.description && formik.touched.description}
+              id="filled-required"
+              label="Descripción"
+              margin="normal"
+            />
+          </Grid>
+
+          <Grid item xs={12} md={12}>
+            <Grid container justifyContent="center">
+              <Button variant="contained" type="submit" sx={{ my: 3 }}>
+                <Autorenew />
+                ACTUALIZAR
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
-
-        <hr></hr>
-
-        <FormControl fullWidth sx={{ py: 2 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                required
-                error={formik.errors.name && formik.touched.name}
-                id="filled-required"
-                label="Nombre"
-                margin="normal"
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                required
-                error={formik.errors.short_name && formik.touched.short_name}
-                id="filled-required"
-                label="Nombre Corto"
-                margin="normal"
-              />
-            </Grid>
-
-            <Grid item xs={12} md={12}>
-              <TextField
-                fullWidth
-                required
-                error={formik.errors.description && formik.touched.description}
-                id="filled-required"
-                label="Descripción"
-                margin="normal"
-              />
-            </Grid>
-
-            <Grid item xs={12} md={12}>
-              <Grid container justifyContent="center">
-                <Button variant="contained" type="submit" sx={{ my: 3 }}>
-                  <Autorenew />
-                  ACTUALIZAR
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </FormControl>
-        <hr></hr>
-        {/* Pendiente consulta tabular de unidades relacionadas */}
-        <Grid container spacing={2} sx={{ py: 1 }}>
-          <Grid item xs={12} md={12}>
-            <h2>Unidades Relacionadas</h2>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <Box sx={{ my: 3 }}>
-              {/* <MUIDataTable
+      </FormControl>
+      <hr></hr>
+      {/* Pendiente consulta tabular de unidades relacionadas */}
+      <Grid container spacing={2} sx={{ py: 1 }}>
+        <Grid item xs={12} md={12}>
+          <h2>Unidades Relacionadas</h2>
+        </Grid>
+        <Grid item xs={12} md={12}>
+          <Box sx={{ my: 3 }}>
+            {/* <MUIDataTable
               title={"Circuitos Relacionados"}
               data={data}
               columns={columns}
               options={options}
             ></MUIDataTable> */}
-            </Box>
-          </Grid>
+          </Box>
         </Grid>
-      </Box>
-    </Box>
+      </Grid>
+    </>
   );
 };

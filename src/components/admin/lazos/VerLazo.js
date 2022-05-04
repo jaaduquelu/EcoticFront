@@ -19,7 +19,6 @@ import { Autorenew } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import SideBarAdmin from "../SideBarAdmin";
 import { asyncCrearUnidad } from "../../../redux/actions/admin";
 
 export const VerLazo = () => {
@@ -55,146 +54,137 @@ export const VerLazo = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <SideBarAdmin />
+      <Grid container spacing={2} sx={{ py: 1 }}>
+        <Grid item xs={9} md={10}>
+          <h2>INFORMACIÓN LAZO DE CORROSIÓN # {idLazo}</h2>
+        </Grid>
+        <Grid item xs={3} md={2} container justifyContent="right">
+          <Button
+            variant="contained"
+            type="submit"
+            onClick={() => navigate(-1)} //USAR HISTORY
+          >
+            <KeyboardReturnIcon />
+            Volver
+          </Button>
+        </Grid>
+      </Grid>
 
-        <Box component="main" sx={{ flexGrow: 1, py: 1, px: 3 }}>
-          <Grid container spacing={2} sx={{ py: 1 }}>
-            <Grid item xs={9} md={10}>
-              <h2>INFORMACIÓN LAZO DE CORROSIÓN # {idLazo}</h2>
-            </Grid>
-            <Grid item xs={3} md={2} container justifyContent="right">
+      <hr></hr>
+
+      <FormControl fullWidth sx={{ py: 2 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={6} md={6}>
+            <FormControl
+              fullWidth
+              margin="normal"
+              error={formik.errors.unit_id && formik.touched.unit_id}
+            >
+              <InputLabel id="select-unit">Unidad</InputLabel>
+              <Select
+                labelId="select-unit"
+                label="Unidad"
+                name="unit_id"
+                value={formik.values.unit_id}
+                onChange={formik.handleChange}
+                // renderValue={(value) => `⚠️  - ${value}`}
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              required
+              label="Nombre"
+              margin="normal"
+              name="name"
+              error={formik.errors.name && formik.touched.name}
+              onChange={formik.handleChange}
+              value={formik.values.name}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={12}>
+            <TextField
+              fullWidth
+              aria-required
+              label="Descripción"
+              margin="normal"
+              name="description"
+              error={formik.errors.description && formik.touched.description}
+              onChange={formik.handleChange}
+              value={formik.values.description}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={12}>
+            <TextField
+              fullWidth
+              aria-required
+              label="Comentarios"
+              margin="normal"
+              name="comments"
+              error={formik.errors.comments && formik.touched.comments}
+              onChange={formik.handleChange}
+              value={formik.values.comments}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={12}>
+            <Grid container justifyContent="center">
               <Button
                 variant="contained"
                 type="submit"
-                onClick={() => navigate(-1)} //USAR HISTORY
+                sx={{ my: 3 }}
+                onClick={formik.handleSubmit}
               >
-                <KeyboardReturnIcon />
-                Volver
+                <Autorenew />
+                ACTUALIZAR
               </Button>
             </Grid>
           </Grid>
+        </Grid>
+      </FormControl>
 
-          <hr></hr>
-
-          <FormControl fullWidth sx={{ py: 2 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={6} md={6}>
-                <FormControl
-                  fullWidth
-                  margin="normal"
-                  error={formik.errors.unit_id && formik.touched.unit_id}
-                >
-                  <InputLabel id="select-unit">Unidad</InputLabel>
-                  <Select
-                    labelId="select-unit"
-                    label="Unidad"
-                    name="unit_id"
-                    value={formik.values.unit_id}
-                    onChange={formik.handleChange}
-                    // renderValue={(value) => `⚠️  - ${value}`}
-                  >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  fullWidth
-                  required
-                  label="Nombre"
-                  margin="normal"
-                  name="name"
-                  error={formik.errors.name && formik.touched.name}
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
-                />
-              </Grid>
-
-              <Grid item xs={12} md={12}>
-                <TextField
-                  fullWidth
-                  aria-required
-                  label="Descripción"
-                  margin="normal"
-                  name="description"
-                  error={
-                    formik.errors.description && formik.touched.description
-                  }
-                  onChange={formik.handleChange}
-                  value={formik.values.description}
-                />
-              </Grid>
-
-              <Grid item xs={12} md={12}>
-                <TextField
-                  fullWidth
-                  aria-required
-                  label="Comentarios"
-                  margin="normal"
-                  name="comments"
-                  error={formik.errors.comments && formik.touched.comments}
-                  onChange={formik.handleChange}
-                  value={formik.values.comments}
-                />
-              </Grid>
-
-              <Grid item xs={12} md={12}>
-                <Grid container justifyContent="center">
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    sx={{ my: 3 }}
-                    onClick={formik.handleSubmit}
-                  >
-                    <Autorenew />
-                    ACTUALIZAR
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-          </FormControl>
-
-          <hr></hr>
-          {/* Pendiente consulta tabular de circuitos relacionados */}
-          <Grid container spacing={2} sx={{ py: 1 }}>
-            <Grid item xs={12} md={12}>
-              <h2>Circuitos Relacionados</h2>
-            </Grid>
-            <Grid item xs={12} md={12}>
-              <Box sx={{ my: 3 }}>
-                {/* <MUIDataTable
+      <hr></hr>
+      {/* Pendiente consulta tabular de circuitos relacionados */}
+      <Grid container spacing={2} sx={{ py: 1 }}>
+        <Grid item xs={12} md={12}>
+          <h2>Circuitos Relacionados</h2>
+        </Grid>
+        <Grid item xs={12} md={12}>
+          <Box sx={{ my: 3 }}>
+            {/* <MUIDataTable
               title={"Circuitos Relacionados"}
               data={data}
               columns={columns}
               options={options}
             ></MUIDataTable> */}
-              </Box>
-            </Grid>
-          </Grid>
+          </Box>
+        </Grid>
+      </Grid>
 
-          <hr></hr>
-          {/* Pendiente consulta tabular de grupos relacionados */}
-          <Grid container spacing={2} sx={{ py: 1 }}>
-            <Grid item xs={12} md={12}>
-              <h2>Grupos Relacionados</h2>
-            </Grid>
-            <Grid item xs={12} md={12}>
-              <Box sx={{ my: 3 }}>
-                {/* <MUIDataTable
+      <hr></hr>
+      {/* Pendiente consulta tabular de grupos relacionados */}
+      <Grid container spacing={2} sx={{ py: 1 }}>
+        <Grid item xs={12} md={12}>
+          <h2>Grupos Relacionados</h2>
+        </Grid>
+        <Grid item xs={12} md={12}>
+          <Box sx={{ my: 3 }}>
+            {/* <MUIDataTable
               title={"Circuitos Relacionados"}
               data={data}
               columns={columns}
               options={options}
             ></MUIDataTable> */}
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
+          </Box>
+        </Grid>
+      </Grid>
     </>
   );
 };
