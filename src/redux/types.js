@@ -14,4 +14,7 @@ export const types = {
     "[UI] Cambiar la vista de consulta en admin",
   vistaConsultaTabularAdmin:
     "[UI] Inicializar la vista actual de consulta en admin",
+
+  // Department
+  cargarDepartamentos: "[Admin] Cargar todos los departamentos",
 };

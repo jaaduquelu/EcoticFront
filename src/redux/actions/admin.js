@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 
 import { types } from "../types";
 
-const url = "http://10.10.54.220:4000";
+const url = process.env.REACT_APP_BACKEND_URL;
 // const url = 'http://localhost:4000';
 
 const cargarJerarquia = (jerarquia) => ({
@@ -34,31 +34,31 @@ export const asyncCargarJerarquia = () => {
 
 // *************** DEPARTAMENTOS ******************* //
 
-const cargarDepartamentos = (ciclos) => ({
-  type: types.cargarCiclosVida,
-  payload: ciclos,
+const cargarDepartamentos = (datos) => ({
+  type: types.cargarDepartamentos,
+  payload: datos,
 });
 
-export const asyncCargarDepartamentos = (token) => {
+export const asyncCargarDepartamentos = () => {
   return async (dispatch) => {
     const requestOptions = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        apiKeyToken: token,
+        apiKeyToken: "",
       },
     };
 
     try {
-      const respuesta = await fetch(
-        `${url}/api/jerarquia/ciclosvida`,
-        requestOptions
+      const body = await fetch(`${url}/api/Department`, requestOptions).then(
+        (response) => response.json()
       );
-      const body = await respuesta.json();
 
-      dispatch(cargarDepartamentos(body.ciclos));
+      console.log("respoues:", body);
+
+      dispatch(cargarDepartamentos(body));
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 };

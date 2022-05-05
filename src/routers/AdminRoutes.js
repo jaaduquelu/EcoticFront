@@ -1,14 +1,18 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Grid, Box, Button } from "@mui/material/";
-
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
+// LAYOUT
 import SideBarAdmin from "../components/admin/SideBarAdmin";
-
+import { FiltroJerarquia } from "../components/layout/FiltroJerarquia";
 import ResponsiveAppBar from "../components/layout/NavBar2";
+
+// Paginas
 import { DepartamentosScreen } from "../components/admin/departamentos/DepartamentosScreen";
 import { VerDepartamento } from "../components/admin/departamentos/VerDepartamento";
 import { UnidadesScreen } from "../components/admin/unidades/UnidadesScreen";
@@ -20,12 +24,20 @@ import { MaterialesScreen } from "../components/admin/materiales/MaterialesScree
 import { TiposCMLSScreen } from "../components/admin/tiposCMLS/TiposCMLSScreen";
 import { VerTipoInspeccion } from "../components/admin/tiposInspeccion/VerTipoInspeccion";
 import { VerMaterial } from "../components/admin/materiales/VerMaterial";
-import { FiltroJerarquia } from "../components/layout/FiltroJerarquia";
-
 // import { AccesosScreen } from "../components/admin/accesos/AccesosScreen";
+
+//Consumo de las APIs de Admin
+import { asyncCargarDepartamentos } from "../redux/actions/admin";
 
 export const AdminRoutes = () => {
   const drawerWidth = 300;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncCargarDepartamentos());
+  }, []);
+
   return (
     <>
       {/* <FiltroJerarquia /> */}
@@ -66,10 +78,12 @@ export const AdminRoutes = () => {
               path="tiposInspeccion/:idTipoInspeccion"
               element={<VerTipoInspeccion />}
             />
+
             <Route path="materiales" element={<MaterialesScreen />} />
             <Route path="materiales/:idMaterial" element={<VerMaterial />} />
 
             <Route path="tiposCMLS" element={<TiposCMLSScreen />} />
+
             {/* <Route path="accesos" element={<AccesosScreen />} /> */}
 
             <Route path="*" element={<div>Error 404</div>} />

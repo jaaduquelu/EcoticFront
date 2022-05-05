@@ -109,6 +109,7 @@ const CrearUnidad = () => {
               error={formik.errors.description && formik.touched.description}
               value={formik.values.description}
               onChange={formik.handleChange}
+              helperText={formik.errors.description && "Ingrese la descripción"}
             />
           </Grid>
 
