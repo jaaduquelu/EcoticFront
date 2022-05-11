@@ -16,6 +16,8 @@ export const UnidadesScreen = () => {
     (state) => state.UI.vistaConsultaTabularAdmin
   );
 
+  const unidades = useSelector((state) => state.admin.unidades);
+
   const columnas = [
     "ID",
     "Departamento",
@@ -30,7 +32,12 @@ export const UnidadesScreen = () => {
   return (
     <>
       {vistaActual ? (
-        <ConsultaTabular name="UNIDADES" module="unidades" columns={columnas} />
+        <ConsultaTabular
+          name="UNIDADES"
+          module="unidades"
+          columns={columnas}
+          data={unidades}
+        />
       ) : (
         <CrearUnidad />
       )}

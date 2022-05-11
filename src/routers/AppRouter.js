@@ -22,8 +22,6 @@ export const AppRouter = () => {
 
   const { inProgress } = useMsal();
 
-  // console.log(inProgress);
-
   if (inProgress != InteractionStatus.None) {
     return (
       <div className="container">

@@ -39,26 +39,23 @@ const ConsultaTabular = ({ name, module, columns, data }) => {
   };
 
   return (
-    <Box component="main">
-      <CssBaseline />
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container wrap="nowrap" spacing={2} sx={{ py: 1 }}>
-          <Grid item xs={9} md={10}>
-            <h2 className="col-10 px-5 pt-3">{name}</h2>
-          </Grid>
-          <Grid item xs={3} md={2} container justifyContent="right">
-            <Button
-              variant="contained"
-              onClick={() => dispatch(cambiarVistaConsultaTabularAdmin())}
-            >
-              <AddCircleIcon />
-              NUEVO
-            </Button>
-          </Grid>
+    <Box>
+      <Grid container spacing={2} sx={{ py: 1 }}>
+        <Grid item xs={9} md={10}>
+          <h2>{name}</h2>
         </Grid>
-      </Box>
+        <Grid item xs={3} md={2} container justifyContent="right">
+          <Button
+            variant="contained"
+            onClick={() => dispatch(cambiarVistaConsultaTabularAdmin())}
+          >
+            <AddCircleIcon />
+            NUEVO
+          </Button>
+        </Grid>
+      </Grid>
       <hr></hr>
-      <Box sx={{ my: 3 }}>
+      <Box fullWidth sx={{ py: 3 }}>
         <MUIDataTable
           title={"Consulta Tabular"}
           data={data}

@@ -18,7 +18,7 @@ const acquireAccessToken = async (msalInstance) => {
     return "No auth-token";
   }
   const request = {
-    scopes: ["api://" + process.env.REACT_APP_CLIENT_ID + "/User.read"],
+    scopes: ["api://" + process.env.REACT_APP_CLIENT_ID + "/access_as_user"],
     extraQueryParameters: {
       domain_hint: "a4305987-cf78-4f93-9d64-bf18af65397b",
     },

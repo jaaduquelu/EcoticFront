@@ -5,7 +5,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Grid, Box, Button } from "@mui/material/";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 
 // LAYOUT
 import SideBarAdmin from "../components/admin/SideBarAdmin";
@@ -24,10 +23,16 @@ import { MaterialesScreen } from "../components/admin/materiales/MaterialesScree
 import { TiposCMLSScreen } from "../components/admin/tiposCMLS/TiposCMLSScreen";
 import { VerTipoInspeccion } from "../components/admin/tiposInspeccion/VerTipoInspeccion";
 import { VerMaterial } from "../components/admin/materiales/VerMaterial";
-// import { AccesosScreen } from "../components/admin/accesos/AccesosScreen";
+import { AccesosScreen } from "../components/admin/accesos/AccesosScreen";
 
 //Consumo de las APIs de Admin
-import { asyncCargarDepartamentos } from "../redux/actions/admin";
+import {
+  asyncCargarDepartamentos,
+  asyncCargarUnidades,
+  asyncCargarLazos,
+  asyncCargarTiposInspeccion,
+  asyncCargarMateriales,
+} from "../redux/actions/admin";
 
 export const AdminRoutes = () => {
   const drawerWidth = 300;
@@ -36,13 +41,14 @@ export const AdminRoutes = () => {
 
   useEffect(() => {
     dispatch(asyncCargarDepartamentos());
+    dispatch(asyncCargarUnidades());
+    dispatch(asyncCargarLazos());
+    dispatch(asyncCargarTiposInspeccion());
+    dispatch(asyncCargarMateriales());
   }, []);
 
   return (
     <>
-      {/* <FiltroJerarquia /> */}
-      {/* Pendiente Material */}
-
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <ResponsiveAppBar />
@@ -57,7 +63,15 @@ export const AdminRoutes = () => {
           </Toolbar>
         </AppBar> */}
         <SideBarAdmin drawerWidth={drawerWidth} />
-        <Box component="main" sx={{ flexGrow: 1, py: 2, px: 3 }}>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            py: 2,
+            px: 3,
+            height: "100vh",
+          }}
+        >
           <Toolbar />
           <Routes>
             <Route path="" element={<DepartamentosScreen />} />
@@ -84,7 +98,7 @@ export const AdminRoutes = () => {
 
             <Route path="tiposCMLS" element={<TiposCMLSScreen />} />
 
-            {/* <Route path="accesos" element={<AccesosScreen />} /> */}
+            <Route path="accesos" element={<AccesosScreen />} />
 
             <Route path="*" element={<div>Error 404</div>} />
           </Routes>

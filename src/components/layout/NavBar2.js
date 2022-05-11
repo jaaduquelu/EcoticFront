@@ -1,22 +1,30 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+import {
+  Drawer,
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  MenuItem,
+  Menu,
+  Avatar,
+  Button,
+  Tooltip,
+  SvgIcon,
+} from "@mui/material";
+
+import ButtonLogout from "../auth/ButtonLogout";
 
 const pages = ["Activos", "Dashboard", "Admin"];
 const settings = ["Profile", "Account", "Logout"];
 
 const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const drawerWidth = 300;
+
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -38,16 +46,36 @@ const ResponsiveAppBar = () => {
       position="fixed"
       sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
     >
-      <Toolbar>
-        <Typography
-          variant="h6"
-          noWrap
-          component="div"
-          sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+      <Toolbar disableGutters sx={{ pr: 3 }}>
+        {/* TAMAÑO MD */}
+        <Box
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              // boxSizing: "border-box",
+            },
+            display: { xs: "none", md: "flex" },
+            backgroundColor: "grey.main",
+            // '&:hover': {
+            //   backgroundColor: 'primary.main',
+            //   opacity: [0.9, 0.8, 0.7],
+            // },
+          }}
         >
-          LOGO
-        </Typography>
+          <IconButton sx={{ px: 5, width: "100%" }}>
+            <img
+              src="/ecopetrol.svg"
+              alt="Ecopetrol"
+              style={{ height: "3rem", width: "12rem" }}
+            />
+            {/* <img src="../../images/ecopetrol.svg" alt="Ecopetrol" /> */}
+          </IconButton>
+        </Box>
 
+        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
+        {/* TAMAÑO XS */}
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton
             size="large"
@@ -92,10 +120,8 @@ const ResponsiveAppBar = () => {
         >
           LOGO
         </Typography>
-        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
-
         <Box sx={{ flexGrow: 0 }}>
-          <Tooltip title="Open settings">
+          <Tooltip title="User settings" arrow>
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
             </IconButton>
@@ -122,6 +148,9 @@ const ResponsiveAppBar = () => {
               </MenuItem>
             ))}
           </Menu>
+        </Box>
+        <Box sx={{ flexGrow: 0 }}>
+          <ButtonLogout></ButtonLogout>
         </Box>
       </Toolbar>
     </AppBar>

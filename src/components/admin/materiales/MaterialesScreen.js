@@ -15,6 +15,9 @@ export const MaterialesScreen = () => {
   const vistaActual = useSelector(
     (state) => state.UI.vistaConsultaTabularAdmin
   );
+
+  const materiales = useSelector((state) => state.admin.materiales);
+
   const columnas = [
     "ID",
     "Grupo",

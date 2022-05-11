@@ -19,6 +19,30 @@ export const adminReducer = (state = initialState, action) => {
         departamentos: [...action.payload],
       };
 
+    case types.cargarUnidades:
+      return {
+        ...state,
+        unidades: [...action.payload],
+      };
+
+    case types.cargarLazos:
+      return {
+        ...state,
+        lazos: [...action.payload],
+      };
+
+    case types.cargarTiposInspeccion:
+      return {
+        ...state,
+        tiposInspeccion: [...action.payload],
+      };
+
+    case types.cargarMateriales:
+      return {
+        ...state,
+        materiales: [...action.payload],
+      };
+
     default:
       return state;
   }

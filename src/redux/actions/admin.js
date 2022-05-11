@@ -53,12 +53,9 @@ export const asyncCargarDepartamentos = () => {
       const body = await fetch(`${url}/api/Department`, requestOptions).then(
         (response) => response.json()
       );
-
-      console.log("respoues:", body);
-
       dispatch(cargarDepartamentos(body));
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 };
@@ -85,6 +82,118 @@ export const asyncCrearDepartamento = (cliente, token) => {
       } else {
         Swal.fire("Se presento un error creando el Cliente", "", "error");
       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+// *************** UNIDADES ******************* //
+
+const cargarUnidades = (datos) => ({
+  type: types.cargarUnidades,
+  payload: datos,
+});
+
+export const asyncCargarUnidades = () => {
+  return async (dispatch) => {
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        apiKeyToken: "",
+      },
+    };
+
+    try {
+      const body = await fetch(`${url}/api/Unit`, requestOptions).then(
+        (response) => response.json()
+      );
+      dispatch(cargarUnidades(body));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+// *************** UNIDADES ******************* //
+
+const cargarLazos = (datos) => ({
+  type: types.cargarLazos,
+  payload: datos,
+});
+
+export const asyncCargarLazos = () => {
+  return async (dispatch) => {
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        apiKeyToken: "",
+      },
+    };
+
+    try {
+      const body = await fetch(`${url}/api/CorrosionLoop`, requestOptions).then(
+        (response) => response.json()
+      );
+      dispatch(cargarLazos(body));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+// *************** TIPOS DE INSPECCIÓN ******************* //
+
+const cargarTiposInspeccion = (datos) => ({
+  type: types.cargarTiposInspeccion,
+  payload: datos,
+});
+
+export const asyncCargarTiposInspeccion = () => {
+  return async (dispatch) => {
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        apiKeyToken: "",
+      },
+    };
+
+    try {
+      const body = await fetch(`${url}/api/CorrosionLoop`, requestOptions).then(
+        (response) => response.json()
+      );
+      dispatch(cargarTiposInspeccion(body));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+// *************** TIPOS DE INSPECCIÓN ******************* //
+
+const cargarMateriales = (datos) => ({
+  type: types.cargarMateriales,
+  payload: datos,
+});
+
+export const asyncCargarMateriales = () => {
+  return async (dispatch) => {
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        apiKeyToken: "",
+      },
+    };
+
+    try {
+      const body = await fetch(`${url}/api/Material`, requestOptions).then(
+        (response) => response.json()
+      );
+      dispatch(cargarMateriales(body));
     } catch (error) {
       console.log(error);
     }

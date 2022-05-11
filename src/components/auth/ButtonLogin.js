@@ -1,26 +1,26 @@
 import { useMsal } from "@azure/msal-react";
 import { IconButton, Tooltip } from "@mui/material/";
+
 import Fingerprint from "@mui/icons-material/Fingerprint";
 import Swal from "sweetalert2";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import axios from "../../helpers/instanciasAxios";
 import { loginRequest } from "../../API/authConfig";
 
-const setProfile = async (response) => {
-  const p = await axios
-    .post(
-      "/login/get",
-      { active: true, email: response.account.username },
-      { params: { page: 0, size: 0 } }
-    )
-    .then((response) => {
-      return response.data.data.results[0];
-    });
-  return p;
-};
+// const setProfile = async (response) => {
+//   const p = await axios
+//     .post(
+//       "/login/get",
+//       { active: true, email: response.account.username },
+//       { params: { page: 0, size: 0 } }
+//     )
+//     .then((response) => {
+//       return response.data.data.results[0];
+//     });
+//   return p;
+// };
 
 const ButtonLogin = () => {
   const { instance } = useMsal();
@@ -33,13 +33,13 @@ const ButtonLogin = () => {
       await instance
         .loginPopup(loginRequest)
         .then(async (response) => {
-          let profile = await setProfile(response);
-          dispatch({
-            type: "ACTION-LOGIN",
-            payload: profile ? profile : { id: "", role: 1, administrator: 0 },
-          });
-          dispatch({ type: "ACTION-ROLESVISTA", payload: { role: 0 } });
-          navigate("/app/TableroReuniones");
+          // let profile = await setProfile(response);
+          // dispatch({
+          //   type: "ACTION-LOGIN",
+          //   payload: profile ? profile : { id: "", role: 1, administrator: 0 },
+          // });
+          // dispatch({ type: "ACTION-ROLESVISTA", payload: { role: 0 } });
+          navigate("/");
         })
         .catch((error) => {
           Swal.fire(error, "", "error");
@@ -49,12 +49,12 @@ const ButtonLogin = () => {
       await instance
         .loginRedirect(loginRequest)
         .then((response) => {
-          let profile = setProfile(response).then((res) => {
-            return res;
-          });
-          dispatch({ type: "ACTION-ROLESVISTA", payload: { role: 0 } });
-          dispatch({ type: "ACTION-LOGIN", payload: profile });
-          navigate("/app/TableroReuniones");
+          // let profile = setProfile(response).then((res) => {
+          //   return res;
+          // });
+          // dispatch({ type: "ACTION-ROLESVISTA", payload: { role: 0 } });
+          // dispatch({ type: "ACTION-LOGIN", payload: profile });
+          navigate("/");
         })
         .catch((error) => {
           Swal.fire(error, "", "error");

@@ -53,7 +53,6 @@ const CrearDepartamento = () => {
         <Grid item xs={3} md={2} container justifyContent="right">
           <Button
             variant="contained"
-            type="submit"
             onClick={() => dispatch(cambiarVistaConsultaTabularAdmin())}
           >
             <KeyboardReturnIcon />

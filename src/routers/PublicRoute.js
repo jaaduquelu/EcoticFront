@@ -4,5 +4,5 @@ import { Navigate } from "react-router-dom";
 export const PublicRoute = ({ children }) => {
   const isAuthenticated = useIsAuthenticated();
 
-  return isAuthenticated ? <Navigate to="/home" /> : children;
+  return isAuthenticated ? <Navigate to="/admin" /> : children;
 };

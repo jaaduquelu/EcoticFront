@@ -1,24 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 
-import SideBarAdmin from "../SideBarAdmin";
 import CrearTipoInspeccion from "./CrearTipoInspeccion";
-
-import { asyncCargarJerarquia } from "../../../redux/actions/admin";
 import ConsultaTabular from "../ConsultaTabularAdmin";
+import { vistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
 export const TiposInspeccionScreen = () => {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(asyncCargarJerarquia());
-  // }, []);
+  useEffect(() => {
+    dispatch(vistaConsultaTabularAdmin());
+  }, []);
 
   const vistaActual = useSelector(
     (state) => state.UI.vistaConsultaTabularAdmin
   );
+
+  const tiposInspeccion = useSelector((state) => state.admin.tiposInspeccion);
 
   const columnas = [
     "ID",

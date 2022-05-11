@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import ConsultaTabular from "../ConsultaTabularAdmin";
 import { CrearLazo } from "./CrearLazos";
-
 import { vistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
 export const LazosScreen = () => {
@@ -16,6 +15,9 @@ export const LazosScreen = () => {
   const vistaActual = useSelector(
     (state) => state.UI.vistaConsultaTabularAdmin
   );
+
+  const lazos = useSelector((state) => state.admin.lazos);
+
   const columnas = [
     "ID",
     "Unidad",

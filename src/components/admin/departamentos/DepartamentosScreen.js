@@ -22,11 +22,10 @@ export const DepartamentosScreen = () => {
 
   const departamentos = useSelector((state) => state.admin.departamentos);
 
-  console.log(departamentos);
-
   const columnas = [
     "ID",
     "Nombre",
+    "Nombre Corto",
     "Descripción",
     "Fecha Creación",
     "Usuario Creación",

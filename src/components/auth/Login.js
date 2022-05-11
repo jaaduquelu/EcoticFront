@@ -42,9 +42,7 @@ const Home = () => {
                 <Box ml={12}>
                   <Card variant="outlined" sx={{ width: 60 }}>
                     {" "}
-                    <Link to="/admin">
-                      <Button variant="contained">IN</Button>
-                    </Link>{" "}
+                    <ButtonLogin></ButtonLogin>
                   </Card>
                 </Box>
                 <Typography mt={2} color="primary" sx={{ fontWeight: "bold" }}>
