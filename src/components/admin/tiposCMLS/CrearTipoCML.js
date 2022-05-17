@@ -55,7 +55,7 @@ const CrearTipoCML = () => {
     <Box>
       <Grid container spacing={2} sx={{ py: 1 }}>
         <Grid item xs={9} md={10}>
-          <h2>ADMINISTRACIÓN TIPOS DE CMLS</h2>
+          <h2>NUEVO TIPO DE CML</h2>
         </Grid>
         <Grid item xs={3} md={2} container justifyContent="right">
           <Button

@@ -8,58 +8,24 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { loginRequest } from "../../API/authConfig";
-
-// const setProfile = async (response) => {
-//   const p = await axios
-//     .post(
-//       "/login/get",
-//       { active: true, email: response.account.username },
-//       { params: { page: 0, size: 0 } }
-//     )
-//     .then((response) => {
-//       return response.data.data.results[0];
-//     });
-//   return p;
-// };
+import { types } from "../../redux/types";
 
 const ButtonLogin = () => {
   const { instance } = useMsal();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = async (loginType) => {
-    if (loginType === "popup") {
-      dispatch({ type: "ACTION-LOADING", payload: true });
-      await instance
-        .loginPopup(loginRequest)
-        .then(async (response) => {
-          // let profile = await setProfile(response);
-          // dispatch({
-          //   type: "ACTION-LOGIN",
-          //   payload: profile ? profile : { id: "", role: 1, administrator: 0 },
-          // });
-          // dispatch({ type: "ACTION-ROLESVISTA", payload: { role: 0 } });
-          navigate("/");
-        })
-        .catch((error) => {
-          Swal.fire(error, "", "error");
-        });
-    } else if (loginType === "redirect") {
-      dispatch({ type: "ACTION-LOADING", payload: true });
-      await instance
-        .loginRedirect(loginRequest)
-        .then((response) => {
-          // let profile = setProfile(response).then((res) => {
-          //   return res;
-          // });
-          // dispatch({ type: "ACTION-ROLESVISTA", payload: { role: 0 } });
-          // dispatch({ type: "ACTION-LOGIN", payload: profile });
-          navigate("/");
-        })
-        .catch((error) => {
-          Swal.fire(error, "", "error");
-        });
-    }
+  const handleLogin = async () => {
+    await instance
+      .loginPopup(loginRequest)
+      .then(async (response) => {
+        // navigate("/admin/");
+        console.log(response.accessToken);
+        dispatch({ type: types.renovarToken, payload: response.accessToken });
+      })
+      .catch((error) => {
+        Swal.fire(error, "Error", "error");
+      });
   };
 
   return (
@@ -70,7 +36,7 @@ const ButtonLogin = () => {
           edge="end"
           aria-label="account of current user"
           aria-haspopup="true"
-          onClick={() => handleLogin("popup")}
+          onClick={() => handleLogin()}
         >
           <Fingerprint sx={{ fontSize: 35, color: "#52c41a !important" }} />
         </IconButton>

@@ -10,27 +10,16 @@ const ButtonLogout = () => {
   const { instance } = useMsal();
   const dispatch = useDispatch();
 
-  const handleLogout = (logoutType) => {
-    if (logoutType === "popup") {
-      // dispatch({ type: "ACTION-LOGIN", payload: {} });
-      instance
-        .logoutPopup({
-          postLogoutRedirectUri: "/login",
-          mainWindowRedirectUri: "/",
-        })
-        .catch((error) => {
-          Swal.fire(error, "", "error");
-        });
-    } else if (logoutType === "redirect") {
-      // dispatch({ type: "ACTION-LOGIN", payload: {} });
-      instance
-        .logoutRedirect({
-          postLogoutRedirectUri: "/login",
-        })
-        .catch((error) => {
-          Swal.fire(error, "", "error");
-        });
-    }
+  const handleLogout = () => {
+    // dispatch({ type: "ACTION-LOGIN", payload: {} });
+    instance
+      .logoutPopup({
+        postLogoutRedirectUri: "/login",
+        mainWindowRedirectUri: "/",
+      })
+      .catch((error) => {
+        Swal.fire(error, "", "error");
+      });
   };
 
   return (
@@ -43,7 +32,7 @@ const ButtonLogout = () => {
             aria-label="account of current user"
             aria-haspopup="true"
             color="success"
-            onClick={() => handleLogout("popup")}
+            onClick={() => handleLogout()}
           >
             <ExitToAppIcon sx={{ fontSize: 35, color: "#FF0000 !important" }} />
           </IconButton>

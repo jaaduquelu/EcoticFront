@@ -23,14 +23,24 @@ export const DepartamentosScreen = () => {
   const departamentos = useSelector((state) => state.admin.departamentos);
 
   const columnas = [
-    "ID",
-    "Nombre",
-    "Nombre Corto",
-    "Descripción",
-    "Fecha Creación",
-    "Usuario Creación",
-    "Fecha Actualización",
-    "Usuario Actualización",
+    { field: "id", headerName: "ID", width: 80, hideable: false },
+    { field: "name", headerName: "Nombre", width: 250, hideable: false },
+    { field: "short_name", headerName: "Nombre Corto", width: 130 },
+    {
+      field: "creation_Date",
+      headerName: "Fecha Creación",
+      width: 200,
+      valueFormatter: (params) => {
+        if (params.value == null) {
+          return "";
+        }
+        const valueFormatted = Number(params.value * 100).toLocaleString();
+        return "valueFormatted";
+      },
+    },
+    { field: "creation_User", headerName: "Usuario Creación", width: 200 },
+    { field: "update_Date", headerName: "Fecha Actualización", width: 200 },
+    { field: "update_User", headerName: "Usuario Actualización", width: 260 },
   ];
 
   return (

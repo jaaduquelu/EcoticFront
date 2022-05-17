@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { Grid, Box, Select, MenuItem } from "@mui/material/";
 import {
   DataGrid,
   GridToolbarContainer,
-  GridToolbar,
   GridToolbarColumnsButton,
   GridToolbarExport,
   GridToolbarFilterButton,
 } from "@mui/x-data-grid";
-
-import { asyncCargarJerarquia } from "../../../redux/actions/admin";
 
 const actualizarRol = (usuario, select) => {
   console.log("value", select.value);
@@ -33,27 +30,16 @@ const actualizarRol = (usuario, select) => {
 export const AccesosScreen = () => {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(asyncCargarJerarquia());
-  // }, []);
-
   const [pageSize, setPageSize] = useState(10);
 
   const columnas = [
     { field: "id", headerName: "ID", width: 100, hideable: false },
     { field: "user", headerName: "Usuario", width: 360 },
-    { field: "email", headerName: "Email", width: 260 },
+    { field: "email", headerName: "Email", width: 260, renderHeader: () => {} },
     // {
     //   field: "age",
     //   headerName: "Age",
     //   minWidth: 50,
-    //   valueFormatter: (params) => {
-    //     if (params.value == null) {
-    //       return '';
-    //     }
-    //     const valueFormatted = Number(params.value * 100).toLocaleString();
-    //     return `${valueFormatted} %`;
-    //   },
     //   valueParser: (value) => Number(value) / 100,
     //   disableExport: true,
     // },
@@ -150,13 +136,16 @@ export const AccesosScreen = () => {
     },
   ];
 
-  const vistaAccesosAdmin = useSelector((state) => state.UI.vistaAccesosAdmin);
-
   const CustomToolbar = () => {
     return (
       <GridToolbarContainer>
         {/* <GridToolbarColumnsButton /> */}
-        <GridToolbarFilterButton />
+        <GridToolbarFilterButton
+          title="Mostrar Filtros"
+          variant="outlined"
+          size="medium"
+          sx={{ mx: 2 }}
+        />
         <GridToolbarExport
           csvOptions={{
             fileName: "Accesos_ecotic",
@@ -164,6 +153,9 @@ export const AccesosScreen = () => {
             utf8WithBom: true,
           }}
           printOptions={{ disableToolbarButton: true }}
+          variant="outlined"
+          size="small"
+          sx={{ mx: 2 }}
         />
       </GridToolbarContainer>
     );
@@ -179,8 +171,8 @@ export const AccesosScreen = () => {
           <Grid item xs={3} md={2} container justifyContent="right"></Grid>
         </Grid>
         <hr></hr>
-        <Box fullWidth sx={{ py: 3, px: 6 }}>
-          <div style={{ height: 700, width: "100%" }}>
+        <Box fullWidth sx={{ py: 3, px: 4 }}>
+          <div style={{ height: "80vh", width: "100%" }}>
             <DataGrid
               columns={columnas}
               rows={rows}

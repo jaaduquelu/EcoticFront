@@ -2,27 +2,12 @@ import { types } from "../types";
 
 const url = process.env.REACT_APP_URL;
 
-export const cerrarSesion = () => ({
-  type: types.cerrarSesion,
-  payload: "",
-});
-
-export const iniciaValidacion = () => ({
-  type: types.iniciaValidacion,
-  payload: "",
-});
-
-const finalizaValidacion = () => ({
-  type: types.finalizaValidacion,
-  payload: "",
-});
-
 const iniciarSesion = (datos) => ({
   type: types.iniciarSesion,
   payload: datos,
 });
 
-export const asyncIniciarSesion = (token) => {
+export const asyncConsultarDatosUsuario = () => {
   return async (dispatch) => {
     const requestOptions = {
       method: "GET",
@@ -34,10 +19,9 @@ export const asyncIniciarSesion = (token) => {
     };
 
     try {
-      const body = await fetch(
-        `${url}/api/autenticacion/iniciarsesion`,
-        requestOptions
-      ).then((response) => response.json());
+      const body = await fetch(`${url}/api/auth/role`, requestOptions).then(
+        (response) => response.json()
+      );
 
       if (body.ok) {
         dispatch(iniciarSesion(body.datos));

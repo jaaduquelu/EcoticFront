@@ -13,9 +13,15 @@ const Home = () => {
   const isAuthenticated = useIsAuthenticated();
 
   return (
-    <Grid direction="column" alignItems="center" justify="center" container>
+    <Grid
+      direction="column"
+      alignItems="center"
+      justify="center"
+      container
+      mt={5}
+    >
       <img src={Logo} alt="Aro Ecopetrol" width={400} height={200} />
-      <Box sx={{ mt: -6 }} />
+      <Box sx={{ mt: 4 }} />
 
       <Typography
         mt={6}
@@ -28,10 +34,10 @@ const Home = () => {
       {isAuthenticated ? (
         <img src={ImagenSecurity} alt="Imagen" width={400} height={250} />
       ) : undefined}
-      <Box sx={{ mt: 3 }} />
+      <Box />
       {isAuthenticated ? undefined : (
         <Grid direction="column" alignItems="center" justify="center" container>
-          <Card sx={{ m: 2 }}>
+          <Card sx={{ m: 2, mt: 5 }}>
             <Grid
               direction="column"
               alignItems="center"
@@ -39,10 +45,9 @@ const Home = () => {
               container
             >
               <Box m={5}>
-                <Box ml={12}>
+                <Box ml={10}>
                   <Card variant="outlined" sx={{ width: 60 }}>
-                    {" "}
-                    <ButtonLogin></ButtonLogin>
+                    <ButtonLogin />
                   </Card>
                 </Box>
                 <Typography mt={2} color="primary" sx={{ fontWeight: "bold" }}>
@@ -56,14 +61,14 @@ const Home = () => {
 
       <span style={{ fontSize: 10 }}>
         <Typography align="center">
+          <b>{projectInfo.recommendedBrowsers}</b>
+        </Typography>
+        <Typography align="center">
           Copyright &copy; {projectInfo.versionYear} - {projectInfo.name}{" "}
           {projectInfo.version}&nbsp; Desarrollado para {projectInfo.developTo}
           <br />
         </Typography>
-        <Typography align="center">
-          <b>{projectInfo.recommendedBrowsers}</b>
-        </Typography>
-        <Typography align="justify" sx={{ width: "870px" }}>
+        <Typography align="center" sx={{ mx: 7, mt: 2 }}>
           {projectInfo.information}
         </Typography>
       </span>

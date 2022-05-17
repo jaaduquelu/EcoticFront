@@ -13,7 +13,7 @@ const composeEnhancers =
   compose;
 
 const reducers = combineReducers({
-  login: authReducer,
+  auth: authReducer,
   UI: UIReducer,
   admin: adminReducer,
 });

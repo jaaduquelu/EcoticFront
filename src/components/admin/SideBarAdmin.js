@@ -39,6 +39,22 @@ const SideBarAdmin = ({ drawerWidth }) => {
       <Toolbar />
       <List>
         <ListItemButton
+          selected={selectedIndex === 6}
+          onClick={(event) => {
+            navigate("/admin/accesos");
+            handleListItemClick(event, 6);
+          }}
+          sx={{ py: 2 }}
+        >
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText>Accesos</ListItemText>
+        </ListItemButton>
+
+        <Divider />
+
+        <ListItemButton
           selected={selectedIndex === 0}
           onClick={(event) => {
             navigate("/admin/departamentos");
@@ -131,22 +147,7 @@ const SideBarAdmin = ({ drawerWidth }) => {
           </ListItemIcon>
           <ListItemText>Tipos de CMLS</ListItemText>
         </ListItemButton>
-
         <Divider />
-
-        <ListItemButton
-          selected={selectedIndex === 6}
-          onClick={(event) => {
-            navigate("/admin/accesos");
-            handleListItemClick(event, 6);
-          }}
-          sx={{ py: 2 }}
-        >
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText>Accesos</ListItemText>
-        </ListItemButton>
       </List>
     </Drawer>
   );

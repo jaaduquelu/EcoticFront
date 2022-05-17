@@ -14,16 +14,11 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.iniciaValidacion:
+    case types.renovarToken:
       return {
         ...state,
-        validando: true,
-      };
-
-    case types.finalizaValidacion:
-      return {
-        ...state,
-        validando: false,
+        token: action.payload,
+        autenticado: true,
       };
 
     case types.iniciarSesion:
@@ -43,12 +38,6 @@ export const authReducer = (state = initialState, action) => {
     case types.cerrarSesion:
       return {
         ...initialState,
-      };
-
-    case types.renovarToken:
-      return {
-        ...state,
-        token: action.payload.token,
       };
 
     default:

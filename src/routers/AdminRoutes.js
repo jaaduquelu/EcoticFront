@@ -1,14 +1,12 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Grid, Box, Button } from "@mui/material/";
-import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 
 // LAYOUT
 import SideBarAdmin from "../components/admin/SideBarAdmin";
-import { FiltroJerarquia } from "../components/layout/FiltroJerarquia";
 import ResponsiveAppBar from "../components/layout/NavBar2";
 
 // Paginas
@@ -39,12 +37,14 @@ export const AdminRoutes = () => {
 
   const dispatch = useDispatch();
 
+  const token = useSelector((state) => state.auth.token);
+
   useEffect(() => {
-    dispatch(asyncCargarDepartamentos());
-    dispatch(asyncCargarUnidades());
-    dispatch(asyncCargarLazos());
-    dispatch(asyncCargarTiposInspeccion());
-    dispatch(asyncCargarMateriales());
+    dispatch(asyncCargarDepartamentos(token));
+    // dispatch(asyncCargarUnidades());
+    // dispatch(asyncCargarLazos());
+    // dispatch(asyncCargarTiposInspeccion());
+    // dispatch(asyncCargarMateriales());
   }, []);
 
   return (
@@ -76,6 +76,8 @@ export const AdminRoutes = () => {
           <Routes>
             <Route path="" element={<DepartamentosScreen />} />
 
+            <Route path="accesos" element={<AccesosScreen />} />
+
             <Route path="departamentos" element={<DepartamentosScreen />} />
             <Route
               path="departamentos/:idDepartamento"
@@ -97,8 +99,6 @@ export const AdminRoutes = () => {
             <Route path="materiales/:idMaterial" element={<VerMaterial />} />
 
             <Route path="tiposCMLS" element={<TiposCMLSScreen />} />
-
-            <Route path="accesos" element={<AccesosScreen />} />
 
             <Route path="*" element={<div>Error 404</div>} />
           </Routes>

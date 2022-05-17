@@ -10,7 +10,6 @@ import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 
 //Auth
-import AccesoDenegado from "../components/auth/AccesoDenegado";
 import LogoutScreen from "../components/auth/SesionFinalizada";
 
 import LoginScreen from "../components/auth/Login";
@@ -25,7 +24,7 @@ export const AppRouter = () => {
   if (inProgress != InteractionStatus.None) {
     return (
       <div className="container">
-        <h1>ESPERE...</h1>
+        <h1>Autenticando...</h1>
       </div>
     );
   }
