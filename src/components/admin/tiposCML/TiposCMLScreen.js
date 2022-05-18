@@ -3,21 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
 import ConsultaTabular from "../ConsultaTabularAdmin";
-import { CrearLazo } from "./CrearLazos";
+import CrearTipoCML from "./CrearTipoCML";
 import { vistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
-export const LazosScreen = () => {
+export const TiposCMLScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(vistaConsultaTabularAdmin());
   }, []);
 
+  const tiposCML = useSelector((state) => state.admin.tiposCML);
+
   const vistaActual = useSelector(
     (state) => state.UI.vistaConsultaTabularAdmin
   );
-
-  const lazos = useSelector((state) => state.admin.lazos);
 
   const columnas = [
     { field: "id", headerName: "ID", width: 80, hideable: false },
@@ -36,7 +36,7 @@ export const LazosScreen = () => {
         return valueFormatted;
       },
     },
-    { field: "creationUser", headerName: "Usuario Creación", width: 150 },
+    { field: "creationUserId", headerName: "Usuario Creación", width: 150 },
     {
       field: "updateDate",
       headerName: "Fecha Actualización",
@@ -49,20 +49,20 @@ export const LazosScreen = () => {
         return valueFormatted;
       },
     },
-    { field: "updateUser", headerName: "Usuario Actualización", width: 160 },
+    { field: "updateUserId", headerName: "Usuario Actualización", width: 160 },
   ];
 
   return (
     <>
       {vistaActual ? (
         <ConsultaTabular
-          name="LAZOS DE CORROSIÓN"
-          module="lazos"
+          name="TIPOS DE CMLS"
+          module="tiposCML"
           columns={columnas}
-          data={lazos}
+          data={tiposCML}
         />
       ) : (
-        <CrearLazo />
+        <CrearTipoCML />
       )}
     </>
   );

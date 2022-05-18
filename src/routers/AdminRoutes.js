@@ -18,19 +18,13 @@ import { LazosScreen } from "../components/admin/lazos/LazosScreen";
 import { VerLazo } from "../components/admin/lazos/VerLazo";
 import { TiposInspeccionScreen } from "../components/admin/tiposInspeccion/TiposInspeccionScreen";
 import { MaterialesScreen } from "../components/admin/materiales/MaterialesScreen";
-import { TiposCMLSScreen } from "../components/admin/tiposCMLS/TiposCMLSScreen";
+import { TiposCMLScreen } from "../components/admin/tiposCML/TiposCMLScreen";
 import { VerTipoInspeccion } from "../components/admin/tiposInspeccion/VerTipoInspeccion";
 import { VerMaterial } from "../components/admin/materiales/VerMaterial";
 import { AccesosScreen } from "../components/admin/accesos/AccesosScreen";
 
 //Consumo de las APIs de Admin
-import {
-  asyncCargarDepartamentos,
-  asyncCargarUnidades,
-  asyncCargarLazos,
-  asyncCargarTiposInspeccion,
-  asyncCargarMateriales,
-} from "../redux/actions/admin";
+import { asyncCargarDatosAdmin } from "../redux/actions/admin";
 
 export const AdminRoutes = () => {
   const drawerWidth = 300;
@@ -40,11 +34,7 @@ export const AdminRoutes = () => {
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
-    dispatch(asyncCargarDepartamentos(token));
-    // dispatch(asyncCargarUnidades());
-    // dispatch(asyncCargarLazos());
-    // dispatch(asyncCargarTiposInspeccion());
-    // dispatch(asyncCargarMateriales());
+    dispatch(asyncCargarDatosAdmin(token));
   }, []);
 
   return (
@@ -98,7 +88,7 @@ export const AdminRoutes = () => {
             <Route path="materiales" element={<MaterialesScreen />} />
             <Route path="materiales/:idMaterial" element={<VerMaterial />} />
 
-            <Route path="tiposCMLS" element={<TiposCMLSScreen />} />
+            <Route path="tiposCML" element={<TiposCMLScreen />} />
 
             <Route path="*" element={<div>Error 404</div>} />
           </Routes>

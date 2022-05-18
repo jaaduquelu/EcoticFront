@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 
 import CrearDepartamento from "./CrearDepartamento";
@@ -29,18 +30,29 @@ export const DepartamentosScreen = () => {
     {
       field: "creation_Date",
       headerName: "Fecha Creación",
-      width: 200,
+      width: 150,
       valueFormatter: (params) => {
         if (params.value == null) {
           return "";
         }
-        const valueFormatted = Number(params.value * 100).toLocaleString();
-        return "valueFormatted";
+        const valueFormatted = moment(params.value).format("DD/MM/YYYY");
+        return valueFormatted;
       },
     },
     { field: "creation_User", headerName: "Usuario Creación", width: 200 },
-    { field: "update_Date", headerName: "Fecha Actualización", width: 200 },
-    { field: "update_User", headerName: "Usuario Actualización", width: 260 },
+    {
+      field: "update_Date",
+      headerName: "Fecha Actualización",
+      width: 150,
+      valueFormatter: (params) => {
+        if (params.value == null) {
+          return "";
+        }
+        const valueFormatted = moment(params.value).format("DD/MM/YYYY");
+        return valueFormatted;
+      },
+    },
+    { field: "update_User", headerName: "Usuario Actualización", width: 250 },
   ];
 
   return (

@@ -15,32 +15,31 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { asyncCrearDepartamento } from "../../../redux/actions/admin";
+import { asyncCrearRegistroAdmin } from "../../../redux/actions/admin";
 import { cambiarVistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
 const CrearDepartamento = () => {
   const dispatch = useDispatch();
 
+  const token = useSelector((state) => state.auth.token);
+
   const formik = useFormik({
     initialValues: {
-      id: "",
       name: "",
       short_name: "",
-      description: "",
-      creation_date: new Date().toDateString(),
-      creation_user: "",
-      update_date: new Date().toDateString(),
-      update_user: "",
+      description: " ",
+      creation_user: 1,
+      update_user: 1,
     },
     validationSchema: Yup.object({
       name: Yup.string().min(5).required(),
       description: Yup.string().required(),
-      short_name: Yup.string().required(),
-      // creation_user: Yup.number().required(),
-      // update_user: Yup.number().required(),
+      short_name: Yup.string().max(6).required(),
     }),
     onSubmit: (formDepartamento) => {
-      formik.handleReset();
+      console.log(formDepartamento);
+      dispatch(asyncCrearRegistroAdmin(formDepartamento, token, "Department"));
+      // formik.handleReset();
     },
   });
 

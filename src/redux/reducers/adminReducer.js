@@ -43,6 +43,12 @@ export const adminReducer = (state = initialState, action) => {
         materiales: [...action.payload],
       };
 
+    case types.cargarTiposCML:
+      return {
+        ...state,
+        tiposCML: [...action.payload],
+      };
+
     default:
       return state;
   }

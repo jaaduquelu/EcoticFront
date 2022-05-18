@@ -4,12 +4,11 @@ const initialState = {
   idUsuario: "",
   nombres: "",
   apellidos: "",
-  idJefe: "",
-  cargo: "",
   rol: "",
   token: "",
-  autenticado: false,
-  validando: false,
+  filtroDepartamento: "",
+  filtroUnidad: "",
+  filtroLazo: "",
 };
 
 export const authReducer = (state = initialState, action) => {
