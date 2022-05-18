@@ -2,14 +2,6 @@ import Swal from "sweetalert2";
 
 import { types } from "../types";
 
-const headers = {
-  "Content-Type": "application/json",
-  "Ocp-Apim-Subscription-Key": "12d775a6fc604fe791251ea9be5ca824",
-  Authorization:
-    "Bearer " +
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJhcGk6Ly9mNzNhYTdmMy01MmE4LTQyNjAtOGM0NC1lZWEwMjQ1OWJmNjMiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9hNDMwNTk4Ny1jZjc4LTRmOTMtOWQ2NC1iZjE4YWY2NTM5N2IvIiwiaWF0IjoxNjUyODI2OTQ2LCJuYmYiOjE2NTI4MjY5NDYsImV4cCI6MTY1MjgzMjAxMiwiYWNyIjoiMSIsImFpbyI6IkFWUUFxLzhUQUFBQVd1MjRQMy9CU3ZnYTlRYUdQZHdwNjY3elY5bTVBS2l1L05QSVNURk5TWHBiTGlSb1hOV3VZMlFHZG1tcGpCRG5IcUdwb0hYTzRVUVlhaVl3UHRvNTFBdkVOdFBpU1RHejc3a0ZKRFFPeWVrPSIsImFtciI6WyJwd2QiLCJtZmEiXSwiYXBwaWQiOiJmNzNhYTdmMy01MmE4LTQyNjAtOGM0NC1lZWEwMjQ1OWJmNjMiLCJhcHBpZGFjciI6IjAiLCJmYW1pbHlfbmFtZSI6IkR1cXVlIEx1Z28iLCJnaXZlbl9uYW1lIjoiSmF2aWVyIiwiaXBhZGRyIjoiMTg2LjE1OS43LjEzMCIsIm5hbWUiOiJKYXZpZXIgRHVxdWUgTHVnbyAoSW5kcmEgQ29sb21iaWEpIiwib2lkIjoiOWUwOTVhMTYtMWJkMS00N2IzLWI1MzktMzgyYmJhMWQzNjQ4Iiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTEwNzczNjc3MTctMTYyMzI4NTEyNi0xMDkzNjI1MDY5LTQ1NDEwOCIsInJoIjoiMC5BUW9BaDFrd3BIalBrMC1kWkw4WXIyVTVlX09uT3Zlb1VtQkNqRVR1b0NSWnYyTUtBRUkuIiwic2NwIjoiYWNjZXNzX2FzX3VzZXIiLCJzdWIiOiJlMXo5TGc1MVJfbEFPeUlkVEZNN3pvMTFRRy1zTzZ1OU1RZ1pibC1fbGtBIiwidGlkIjoiYTQzMDU5ODctY2Y3OC00ZjkzLTlkNjQtYmYxOGFmNjUzOTdiIiwidW5pcXVlX25hbWUiOiJqYXZpZXIuZHVxdWVsdUBlY29wZXRyb2wuY29tLmNvIiwidXBuIjoiamF2aWVyLmR1cXVlbHVAZWNvcGV0cm9sLmNvbS5jbyIsInV0aSI6Imp1S1BmMlhOMUVDMUtlQlBSekZhQUEiLCJ2ZXIiOiIxLjAifQ.MQq01hFL8GxwGnBhEuF8LxK80v6RAgych6eia6snrdOb5yvPKHwAD_gjX_ih_MwHGHO9TPxCNhwyhDspiic05D9MuodQiG4cu2fsoJ8mOACmN-mqrx72h6iXS58WQejaDHfVIM0l1KGbRWsW0fRzGpEvI5F9eYTmru7f7waYKU4dmoDJrUUguQUWuKNnxR9TFYeQyi2FGyeUOafjE-PwpkvbWlaAhyxYowK2K-WycHBxvAG0PTqQbEYUnS4RykZIvtq5XT-D_8FVRwvhRrTVhIStZ6heU0kRpdn6lSO-Z6gnRPXjTMORucIOSOkwTBTpswwVHkansurTcisXExzVPA",
-};
-
 const url = process.env.REACT_APP_BACKEND_QAS_URL;
 
 const cargarJerarquia = (jerarquia) => ({
@@ -64,11 +56,13 @@ const cargarTiposInspeccion = (datos) => ({
   payload: datos,
 });
 
-const cargarTiposCMLS = (datos) => ({
-  type: types.cargarTiposCMLS,
+const cargarTiposCML = (datos) => ({
+  type: types.cargarTiposCML,
   payload: datos,
 });
 
+const token2 =
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJhcGk6Ly9mNzNhYTdmMy01MmE4LTQyNjAtOGM0NC1lZWEwMjQ1OWJmNjMiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9hNDMwNTk4Ny1jZjc4LTRmOTMtOWQ2NC1iZjE4YWY2NTM5N2IvIiwiaWF0IjoxNjUyODgzNjEzLCJuYmYiOjE2NTI4ODM2MTMsImV4cCI6MTY1Mjg4OTIwNiwiYWNyIjoiMSIsImFpbyI6IkFWUUFxLzhUQUFBQUxtQndjek1XZ0xielBrbnFCUjBFbERqbFY0VHFqcEJjem8yTDYwMUR1Um9tY3lmNWJBMVROZ09mM1c1cFJhUEl5WXpDRDlGNUNqNUk3SnBNOGZhNWw4L0FjblJzdzZwUzVhVjdGVFFBRG9vPSIsImFtciI6WyJwd2QiLCJtZmEiXSwiYXBwaWQiOiJmNzNhYTdmMy01MmE4LTQyNjAtOGM0NC1lZWEwMjQ1OWJmNjMiLCJhcHBpZGFjciI6IjAiLCJmYW1pbHlfbmFtZSI6IkR1cXVlIEx1Z28iLCJnaXZlbl9uYW1lIjoiSmF2aWVyIiwiaXBhZGRyIjoiMTg2LjE1OS43LjEzMCIsIm5hbWUiOiJKYXZpZXIgRHVxdWUgTHVnbyAoSW5kcmEgQ29sb21iaWEpIiwib2lkIjoiOWUwOTVhMTYtMWJkMS00N2IzLWI1MzktMzgyYmJhMWQzNjQ4Iiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTEwNzczNjc3MTctMTYyMzI4NTEyNi0xMDkzNjI1MDY5LTQ1NDEwOCIsInJoIjoiMC5BUW9BaDFrd3BIalBrMC1kWkw4WXIyVTVlX09uT3Zlb1VtQkNqRVR1b0NSWnYyTUtBRUkuIiwic2NwIjoiYWNjZXNzX2FzX3VzZXIiLCJzdWIiOiJlMXo5TGc1MVJfbEFPeUlkVEZNN3pvMTFRRy1zTzZ1OU1RZ1pibC1fbGtBIiwidGlkIjoiYTQzMDU5ODctY2Y3OC00ZjkzLTlkNjQtYmYxOGFmNjUzOTdiIiwidW5pcXVlX25hbWUiOiJqYXZpZXIuZHVxdWVsdUBlY29wZXRyb2wuY29tLmNvIiwidXBuIjoiamF2aWVyLmR1cXVlbHVAZWNvcGV0cm9sLmNvbS5jbyIsInV0aSI6Il9pa2NFam5oNzAtQlBBcXdUbHNpQUEiLCJ2ZXIiOiIxLjAifQ.QLaPiVnqBttwTgOgL_r-sJihRH0dih1P20IkDP2Cu8sIoiII1WfeyhVjknA6rYPHlrCywQcXKWlU0HPKHrX4RzO4H3xufTvfq8ueUkZNERYTh17mz0bnwQzZOiZPPpPbmt8eKBBIXuSMA_g128gFu9qDo2bY00ooWs_8NGOcZ_f3ZV_09xdUArT8YZeYN5diKmUaiaBDo7kSqzt--vIO07Cn3G704bXIs_ZASi_dZRaD6Rycz-BfkBaDh61yUo_4cVZ-YGEEPIfLq8v1-QF0gab0jR5mbiYFEZ559OOwJBx34tPNS7BD7pLf1mkUAk7dyxmTD1Rr0DoxK4GOTJbMEw";
 export const asyncCargarDatosAdmin = (token) => {
   return async (dispatch) => {
     const requestOptions = {
@@ -76,7 +70,7 @@ export const asyncCargarDatosAdmin = (token) => {
       headers: {
         "Content-Type": "application/json",
         "Ocp-Apim-Subscription-Key": "12d775a6fc604fe791251ea9be5ca824",
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + token2,
       },
     };
     try {
@@ -86,6 +80,7 @@ export const asyncCargarDatosAdmin = (token) => {
       );
       const departamentos = await responseDepartment.json();
       if (responseDepartment.ok) {
+        console.log("Departamentos OK");
         dispatch(cargarDepartamentos(departamentos));
       } else {
         Swal.fire(
@@ -99,6 +94,7 @@ export const asyncCargarDatosAdmin = (token) => {
       // const unidades = await responseUnit.json();
       // if (responseUnit.ok) {
       //   dispatch(cargarUnidades(unidades));
+      //   console.log("Unidades OK");
       //   console.log(unidades);
       // } else {
       //   console.log(responseUnit);
@@ -106,21 +102,22 @@ export const asyncCargarDatosAdmin = (token) => {
       //   Swal.fire("Se presento un error cargando las Unidades", "", "error");
       // }
 
-      // const responseLoop = await fetch(
-      //   `${url}/api/CorrosionLoop`,
-      //   requestOptions
-      // );
-      // const lazos = await responseLoop.json();
-      // if (responseLoop.ok) {
-      //   dispatch(cargarLazos(lazos));
-      // } else {
-      //   console.log(responseLoop);
-      //   Swal.fire(
-      //     "Se presento un error cargando los Lazos de Corrosión",
-      //     "",
-      //     "error"
-      //   );
-      // }
+      const responseLoop = await fetch(
+        `${url}/api/CorrosionLoop`,
+        requestOptions
+      );
+      const lazos = await responseLoop.json();
+      if (responseLoop.ok) {
+        console.log("Lazos OK");
+        dispatch(cargarLazos(lazos));
+      } else {
+        console.log(responseLoop);
+        Swal.fire(
+          "Se presento un error cargando los Lazos de Corrosión",
+          "",
+          "error"
+        );
+      }
 
       const responseMaterial = await fetch(
         `${url}/api/Material`,
@@ -128,6 +125,7 @@ export const asyncCargarDatosAdmin = (token) => {
       );
       const materiales = await responseMaterial.json();
       if (responseMaterial.ok) {
+        console.log("Materiales OK");
         dispatch(cargarMateriales(materiales));
       } else {
         console.log(responseMaterial);
@@ -135,32 +133,32 @@ export const asyncCargarDatosAdmin = (token) => {
         Swal.fire("Se presento un error cargando los Materiales", "", "error");
       }
 
-      // const responseSurvey = await fetch(
-      //   `${url}/api/SurveyType`,
-      //   requestOptions
-      // );
-      // const tiposInspeccion = await responseSurvey.json();
-      // if (responseSurvey.ok) {
-      //   dispatch(cargarTiposInspeccion(tiposInspeccion));
-      //   console.log(tiposInspeccion);
-      // } else {
-      //   console.log(responseSurvey);
-      //   console.log(tiposInspeccion);
-      //   Swal.fire(
-      //     "Se presento un error cargando los Tipos de Inspección",
-      //     "",
-      //     "error"
-      //   );
-      // }
+      const responseSurvey = await fetch(
+        `${url}/api/SurveyType`,
+        requestOptions
+      );
+      const tiposInspeccion = await responseSurvey.json();
+      if (responseSurvey.ok) {
+        dispatch(cargarTiposInspeccion(tiposInspeccion));
+        console.log("Tipos Inspección OK");
+      } else {
+        console.log(responseSurvey);
+        console.log(tiposInspeccion);
+        Swal.fire(
+          "Se presento un error cargando los Tipos de Inspección",
+          "",
+          "error"
+        );
+      }
 
       const responseCML = await fetch(`${url}/api/CMLType`, requestOptions);
-      const tiposCMLS = await responseCML.json();
+      const tiposCML = await responseCML.json();
       if (responseCML.ok) {
-        console.log(tiposCMLS);
-        dispatch(cargarTiposCMLS(tiposCMLS));
+        dispatch(cargarTiposCML(tiposCML));
+        console.log("Tipos CML OK");
       } else {
         console.log(responseCML);
-        console.log(tiposCMLS);
+        console.log(tiposCML);
         Swal.fire(
           "Se presento un error cargando los Tipos de CMLS",
           "",
@@ -168,7 +166,7 @@ export const asyncCargarDatosAdmin = (token) => {
         );
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.json());
       Swal.fire(
         "Se presento un error cargando los datos de Administración ",
         "",

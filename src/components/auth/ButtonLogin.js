@@ -19,7 +19,7 @@ const ButtonLogin = () => {
     await instance
       .loginPopup(loginRequest)
       .then(async (response) => {
-        // navigate("/admin/");
+        navigate("/admin/");
         console.log(response.accessToken);
         dispatch({ type: types.renovarToken, payload: response.accessToken });
       })

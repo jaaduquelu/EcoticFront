@@ -137,7 +137,7 @@ const SideBarAdmin = ({ drawerWidth }) => {
         <ListItemButton
           selected={selectedIndex === 5}
           onClick={(event) => {
-            navigate("/admin/tiposCMLS");
+            navigate("/admin/tiposCML");
             handleListItemClick(event, 5);
           }}
           sx={{ py: 2 }}

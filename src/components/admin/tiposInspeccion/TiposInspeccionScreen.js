@@ -19,15 +19,11 @@ export const TiposInspeccionScreen = () => {
   const tiposInspeccion = useSelector((state) => state.admin.tiposInspeccion);
 
   const columnas = [
-    "ID",
-    "Nombre",
-    "Nombre corto",
-    "Descripción",
-    "For Cr",
-    "Fecha Creación",
-    "Usuario Creación",
-    "Fecha Actualización",
-    "Usuario Actualización",
+    { field: "id", headerName: "ID", width: 80, hideable: false },
+    { field: "name", headerName: "Nombre", width: 250, hideable: false },
+    { field: "shortName", headerName: "Nombre Corto", width: 100 },
+    { field: "description", headerName: "Descripción", width: 400 },
+    { field: "forCr", headerName: "For Cr", width: 100 },
   ];
 
   return (
@@ -37,6 +33,7 @@ export const TiposInspeccionScreen = () => {
           name="TIPOS DE INSPECCIÓN"
           module="tiposInspeccion"
           columns={columnas}
+          data={tiposInspeccion}
         />
       ) : (
         <CrearTipoInspeccion />
