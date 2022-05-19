@@ -97,7 +97,7 @@ const SideBarAdmin = ({ drawerWidth }) => {
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText>Lazos de corroción</ListItemText>
+          <ListItemText>Lazos de corrosión</ListItemText>
         </ListItemButton>
 
         <Divider />

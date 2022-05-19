@@ -2,64 +2,49 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  Grid,
-  Box,
-  Select,
-  MenuItem,
-  FormControl,
-  TextField,
-  Button,
-} from "@mui/material/";
+import { Grid, Box, FormControl, TextField, Button } from "@mui/material/";
 
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Autorenew } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { asyncActualizarRegistroAdmin } from "../../../redux/actions/admin";
 
-import { asyncCrearTipoCML } from "../../../redux/actions/admin";
-import { cambiarVistaConsultaTabularAdmin } from "../../../redux/actions/UI";
-
-const CrearTipoCML = () => {
+export const VerTipoCML = () => {
   const dispatch = useDispatch();
   const { idTipoCML } = useParams();
 
   let navigate = useNavigate();
 
-  // const departamento = useSelector((state) =>
-  //   state.admin.departamentos.find((i) => i.id == idDepartamento)
-  // );
+  const tipoCML = useSelector((state) =>
+    state.admin.tiposCML.find((i) => i.id == idTipoCML)
+  );
 
-  // const {} = departamento;
+  const idUsuario = useSelector((state) => state.auth.idUsuario);
+  const token = useSelector((state) => state.auth.token);
 
   const formik = useFormik({
     initialValues: {
-      id: "",
-      name: "",
-      description: "",
-      tml_qty: "",
-      creation_date: new Date().toDateString(),
-      creation_user_id: "",
-      update_date: new Date().toDateString(),
-      update_user: "",
-      start_1: "",
-      start_2: "",
-      start_3: "",
-      start_4: "",
-      end_1: "",
-      end_2: "",
-      end_3: "",
-      end_4: "",
-    }, //Le faltan campos
+      id: tipoCML.id,
+      name: tipoCML.name,
+      description: tipoCML.description,
+      tmlQty: tipoCML.tmlQty,
+      start_1: tipoCML.start_1,
+      start_2: tipoCML.start_2,
+      start_3: tipoCML.start_3,
+      start_4: tipoCML.start_3,
+      end_1: tipoCML.end_1,
+      end_2: tipoCML.end_2,
+      end_3: tipoCML.end_3,
+      end_4: tipoCML.end_4,
+      updateUserId: idUsuario,
+    },
     validationSchema: Yup.object({
       name: Yup.string().required(),
       description: Yup.string().required(),
-      // creation_user: Yup.number().required(),
-      // update_user: Yup.number().required(),
     }),
-    onSubmit: (formTipoCML) => {
-      formik.handleReset();
+    onSubmit: (formCMLType) => {
+      dispatch(asyncActualizarRegistroAdmin(formCMLType, token, "CMLType"));
     },
   });
 
@@ -98,12 +83,12 @@ const CrearTipoCML = () => {
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
-              required
-              label="Nombre Corto"
+              type="number"
+              label="TML Qty"
               margin="normal"
-              name="short_name"
-              error={formik.errors.short_name && formik.touched.short_name}
-              value={formik.values.short_name}
+              name="tmlQty"
+              error={formik.errors.tmlQty && formik.touched.tmlQty}
+              value={formik.values.tmlQty}
               onChange={formik.handleChange}
             />
           </Grid>
@@ -111,7 +96,6 @@ const CrearTipoCML = () => {
           <Grid item xs={12} md={12}>
             <TextField
               fullWidth
-              required
               label="Descripción"
               margin="normal"
               name="description"
@@ -120,10 +104,110 @@ const CrearTipoCML = () => {
               onChange={formik.handleChange}
             />
           </Grid>
-
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Inicio 1"
+              margin="normal"
+              name="start_1"
+              error={formik.errors.start_1 && formik.touched.start_1}
+              value={formik.values.start_1}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Fin 1"
+              margin="normal"
+              name="end_1"
+              error={formik.errors.end_1 && formik.touched.end_1}
+              value={formik.values.end_1}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Inicio 2"
+              margin="normal"
+              name="start_2"
+              error={formik.errors.start_2 && formik.touched.start_2}
+              value={formik.values.start_2}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Fin 2"
+              margin="normal"
+              name="end_2"
+              error={formik.errors.end_2 && formik.touched.end_2}
+              value={formik.values.end_2}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Inicio 3"
+              margin="normal"
+              name="start_3"
+              error={formik.errors.start_3 && formik.touched.start_3}
+              value={formik.values.start_3}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Fin 3"
+              margin="normal"
+              name="end_3"
+              error={formik.errors.end_3 && formik.touched.end_3}
+              value={formik.values.end_3}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Inicio 4"
+              margin="normal"
+              name="start_4"
+              error={formik.errors.start_4 && formik.touched.start_4}
+              value={formik.values.start_4}
+              onChange={formik.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Fin 4"
+              margin="normal"
+              name="end_4"
+              error={formik.errors.end_4 && formik.touched.end_4}
+              value={formik.values.end_4}
+              onChange={formik.handleChange}
+            />
+          </Grid>
           <Grid item xs={12} md={12}>
             <Grid container justifyContent="center">
-              <Button variant="contained" type="submit" sx={{ my: 3 }}>
+              <Button
+                variant="contained"
+                type="submit"
+                sx={{ my: 3 }}
+                onClick={formik.handleSubmit}
+              >
                 <Autorenew />
                 ACTUALIZAR
               </Button>
@@ -152,5 +236,3 @@ const CrearTipoCML = () => {
     </Box>
   );
 };
-
-export default CrearTipoCML;

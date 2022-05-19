@@ -7,7 +7,6 @@ import {
   InputLabel,
   MenuItem,
   FormControl,
-  FormHelperText,
   TextField,
   Button,
 } from "@mui/material/";
@@ -17,33 +16,33 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { asyncCrearUnidad } from "../../../redux/actions/admin";
 import { cambiarVistaConsultaTabularAdmin } from "../../../redux/actions/UI";
+import { asyncCrearRegistroAdmin } from "../../../redux/actions/admin";
 
 export const CrearLazo = () => {
   const dispatch = useDispatch();
 
+  const idUsuario = useSelector((state) => state.auth.idUsuario);
+  const token = useSelector((state) => state.auth.token);
+
+  const unidades = useSelector((state) => state.admin.unidades);
+
   const formik = useFormik({
     initialValues: {
       name: "",
-      unit_id: null,
+      unitId: null,
       description: "",
       comments: "",
-      creation_date: new Date().toDateString(),
-      creation_user: "",
-      update_date: new Date().toDateString(),
-      update_user: "",
+      creationUser: idUsuario,
     },
     validationSchema: Yup.object({
       name: Yup.string().min(5).required(),
-      description: Yup.string().required(),
-      unit_id: Yup.number().required(),
-      // creation_user: Yup.number().required(),
-      // update_user: Yup.number().required(),
+      description: Yup.string(),
+      unitId: Yup.number().required(),
     }),
-    onSubmit: (formUnidad) => {
-      console.log(formUnidad);
-      formik.handleReset();
+    onSubmit: (formLoop) => {
+      console.log(formLoop);
+      dispatch(asyncCrearRegistroAdmin(formLoop, token, "CorrosionLoop"));
     },
   });
 
@@ -73,20 +72,19 @@ export const CrearLazo = () => {
             <FormControl
               fullWidth
               margin="normal"
-              error={formik.errors.unit_id && formik.touched.unit_id}
+              error={formik.errors.unitId && formik.touched.unitId}
             >
               <InputLabel id="select-unit">Unidad</InputLabel>
               <Select
                 labelId="select-unit"
                 label="Unidad"
-                name="unit_id"
-                value={formik.values.unit_id}
+                name="unitId"
+                value={formik.values.unitId}
                 onChange={formik.handleChange}
-                // renderValue={(value) => `⚠️  - ${value}`}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {unidades.map((i) => (
+                  <MenuItem value={i.id}>{i.name}</MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
@@ -106,7 +104,6 @@ export const CrearLazo = () => {
           <Grid item xs={12} md={12}>
             <TextField
               fullWidth
-              aria-required
               label="Descripción"
               margin="normal"
               name="description"

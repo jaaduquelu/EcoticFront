@@ -9,19 +9,22 @@ import { useDispatch } from "react-redux";
 
 import { loginRequest } from "../../API/authConfig";
 import { types } from "../../redux/types";
+import { asyncConsultarDatosUsuario } from "../../redux/actions/auth";
 
 const ButtonLogin = () => {
   const { instance } = useMsal();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleLogin = async () => {
     await instance
       .loginPopup(loginRequest)
       .then(async (response) => {
-        navigate("/admin/");
         console.log(response.accessToken);
-        dispatch({ type: types.renovarToken, payload: response.accessToken });
+        await dispatch({
+          type: types.renovarToken,
+          payload: response.accessToken,
+        });
+        dispatch(asyncConsultarDatosUsuario(response.accessToken));
       })
       .catch((error) => {
         Swal.fire(error, "Error", "error");

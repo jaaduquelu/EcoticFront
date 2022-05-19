@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import CssBaseline from "@mui/material/CssBaseline";
 import {
   Grid,
   Box,
@@ -19,36 +18,37 @@ import { Autorenew } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { asyncCrearUnidad } from "../../../redux/actions/admin";
+import { asyncActualizarRegistroAdmin } from "../../../redux/actions/admin";
 
 export const VerLazo = () => {
   const dispatch = useDispatch();
+  const { idLazo } = useParams();
+
   let navigate = useNavigate();
 
-  const { idLazo } = useParams();
+  const lazo = useSelector((state) =>
+    state.admin.lazos.find((i) => i.id == idLazo)
+  );
+
+  const idUsuario = useSelector((state) => state.auth.idUsuario);
+  const token = useSelector((state) => state.auth.token);
 
   const formik = useFormik({
     initialValues: {
-      id: 15,
-      name: "",
-      unit_id: null,
-      description: "",
-      comments: "",
-      creation_date: new Date().toDateString(),
-      creation_user: "",
-      update_date: new Date().toDateString(),
-      update_user: "",
+      id: lazo.id,
+      name: lazo.name,
+      unit_id: lazo.unit_id,
+      description: lazo.description,
+      comments: lazo.comments,
+      update_user: idUsuario,
     },
     validationSchema: Yup.object({
       name: Yup.string().min(5).required(),
-      description: Yup.string().required(),
       unit_id: Yup.number().required(),
-      // creation_user: Yup.number().required(),
-      // update_user: Yup.number().required(),
     }),
-    onSubmit: (formUnidad) => {
-      console.log(formUnidad);
-      formik.handleReset();
+    onSubmit: (formLoop) => {
+      console.log(formLoop);
+      dispatch(asyncActualizarRegistroAdmin(formLoop, token, "CorrosionLoop"));
     },
   });
 
@@ -62,7 +62,7 @@ export const VerLazo = () => {
           <Button
             variant="contained"
             type="submit"
-            onClick={() => navigate(-1)} //USAR HISTORY
+            onClick={() => navigate(-1)}
           >
             <KeyboardReturnIcon />
             Volver

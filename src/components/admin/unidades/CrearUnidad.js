@@ -16,31 +16,31 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { asyncCrearUnidad } from "../../../redux/actions/admin";
+import { asyncCrearRegistroAdmin } from "../../../redux/actions/admin";
 import { cambiarVistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
 const CrearUnidad = () => {
   const dispatch = useDispatch();
+
+  const idUsuario = useSelector((state) => state.auth.idUsuario);
+  const token = useSelector((state) => state.auth.token);
+
+  const departamentos = useSelector((state) => state.admin.departamentos);
 
   const formik = useFormik({
     initialValues: {
       name: "",
       department_id: null,
       description: "",
-      creation_date: new Date().toDateString(),
-      creation_user: "",
-      update_date: new Date().toDateString(),
-      update_user: "",
+      creation_user: idUsuario,
     },
     validationSchema: Yup.object({
       name: Yup.string().min(5).required(),
-      description: Yup.string().required(),
       department_id: Yup.number().required(),
-      // creation_user: Yup.number().required(),
-      // update_user: Yup.number().required(),
     }),
-    onSubmit: (formUnidad) => {
-      console.log(formUnidad);
+    onSubmit: (formUnit) => {
+      console.log(formUnit);
+      dispatch(asyncCrearRegistroAdmin(formUnit, token, "Unit"));
       formik.handleReset();
     },
   });
@@ -49,7 +49,7 @@ const CrearUnidad = () => {
     <Box>
       <Grid container spacing={2} sx={{ py: 1 }}>
         <Grid item xs={9} md={10}>
-          <h2>ADMINISTRACIÓN UNIDADES</h2>
+          <h2>NUEVA UNIDAD</h2>
         </Grid>
         <Grid item xs={3} md={2} container justifyContent="right">
           <Button
@@ -79,11 +79,10 @@ const CrearUnidad = () => {
                 }
                 value={formik.values.department_id}
                 onChange={formik.handleChange}
-                // renderValue={(value) => `⚠️  - ${value}`}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {departamentos.map((i) => (
+                  <MenuItem value={i.id}>{i.name}</MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>

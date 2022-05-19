@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material/";
+import EditIcon from "@mui/icons-material/Edit";
+
 import ConsultaTabular from "../ConsultaTabularAdmin";
 import CrearMaterial from "./CrearMaterial";
 
@@ -7,6 +11,7 @@ import { vistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
 export const MaterialesScreen = () => {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   useEffect(() => {
     dispatch(vistaConsultaTabularAdmin());
@@ -19,6 +24,20 @@ export const MaterialesScreen = () => {
   const materiales = useSelector((state) => state.admin.materiales);
 
   const columnas = [
+    {
+      field: "",
+      headerName: "Editar",
+      width: 80,
+      hideable: false,
+      renderCell: (params) => (
+        <Button
+          variant="contained"
+          onClick={() => navigate("/admin/materiales/" + params.row.id)}
+        >
+          <EditIcon />
+        </Button>
+      ),
+    },
     { field: "id", headerName: "ID", width: 80, hideable: false },
     {
       field: "material_group",

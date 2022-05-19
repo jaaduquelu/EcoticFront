@@ -1,27 +1,21 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "@mui/material/Button";
-import {
-  Grid,
-  Box,
-  Select,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  FormHelperText,
-  TextField,
-} from "@mui/material/";
+import { Grid, Box, FormControl, TextField } from "@mui/material/";
 
 import AddIcon from "@mui/icons-material/Add";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { asyncCrearMaterial } from "../../../redux/actions/admin";
+import { asyncCrearRegistroAdmin } from "../../../redux/actions/admin";
 import { cambiarVistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
 const CrearMaterial = () => {
   const dispatch = useDispatch();
+
+  const idUsuario = useSelector((state) => state.auth.idUsuario);
+  const token = useSelector((state) => state.auth.token);
 
   const formik = useFormik({
     initialValues: {
@@ -67,25 +61,23 @@ const CrearMaterial = () => {
       uns: "",
       w: 0,
       y_coeff_id: 0,
-      creation_date: new Date().toDateString(),
-      creation_user: "",
-      update_date: new Date().toDateString(),
-      update_user: "",
+      creation_user: idUsuario,
     },
     validationSchema: Yup.object({
       name: Yup.string().required(),
-      description: Yup.string().required(),
-      class: Yup.string().required(),
-      grade: Yup.string().required(),
+      // description: Yup.string().required(),
+      // class: Yup.string().required(),
+      // grade: Yup.string().required(),
       material: Yup.string().required(),
-      material_group: Yup.string().required(),
-      min_temp: Yup.string().required(),
-      smts: Yup.number(),
-      smys: Yup.number(),
-      y_coeff_id: Yup.number().integer().required(),
+      // material_group: Yup.string().required(),
+      // min_temp: Yup.string().required(),
+      // smts: Yup.number(),
+      // smys: Yup.number(),
+      // y_coeff_id: Yup.number().integer().required(),
     }),
     onSubmit: (formMaterial) => {
       console.log(formMaterial);
+      dispatch(asyncCrearRegistroAdmin(formMaterial, token, "Material"));
       formik.handleReset();
     },
   });

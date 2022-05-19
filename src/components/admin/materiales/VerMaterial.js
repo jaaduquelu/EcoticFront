@@ -3,23 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  Grid,
-  Box,
-  Select,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  TextField,
-  Button,
-} from "@mui/material/";
+import { Grid, FormControl, TextField, Button } from "@mui/material/";
 
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Autorenew } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
-import { asyncCrearUnidad } from "../../../redux/actions/admin";
+import { asyncActualizarRegistroAdmin } from "../../../redux/actions/admin";
 
 export const VerMaterial = () => {
   const dispatch = useDispatch();
@@ -27,69 +17,65 @@ export const VerMaterial = () => {
 
   const { idMaterial } = useParams();
 
+  const material = useSelector((state) =>
+    state.admin.materiales.find((i) => i.id == idMaterial)
+  );
+
+  const idUsuario = useSelector((state) => state.auth.idUsuario);
+  const token = useSelector((state) => state.auth.token);
+
   const formik = useFormik({
     initialValues: {
-      name: "",
-      class: "",
-      e: 0,
-      grade: "",
-      material: "",
-      material_group: "",
-      min_temp: "",
-      notes: "",
-      p_no: "",
-      product_form: "",
-      s_100: 0,
-      s_200: 0,
-      s_300: 0,
-      s_400: 0,
-      s_500: 0,
-      s_600: 0,
-      s_650: 0,
-      s_700: 0,
-      s_750: 0,
-      s_800: 0,
-      s_850: 0,
-      s_900: 0,
-      s_950: 0,
-      s_1000: 0,
-      s_1050: 0,
-      s_1100: 0,
-      s_1150: 0,
-      s_1200: 0,
-      s_1250: 0,
-      s_1300: 0,
-      s_1350: 0,
-      s_1400: 0,
-      s_1450: 0,
-      s_1500: 0,
-      size: "",
-      smts: undefined,
-      smys: undefined,
-      specification: "",
-      uns: "",
-      w: 0,
-      y_coeff_id: 0,
-      creation_date: new Date().toDateString(),
-      creation_user: "",
-      update_date: new Date().toDateString(),
-      update_user: "",
+      name: material.name,
+      class: material.class,
+      e: material.e,
+      grade: material.grade,
+      material: material.material,
+      material_group: material.material_group,
+      min_temp: material.min_temp,
+      notes: material.notes,
+      p_no: material.p_no,
+      product_form: material.product_form,
+      s_100: material.s_100,
+      s_200: material.s_200,
+      s_300: material.s_300,
+      s_400: material.s_400,
+      s_500: material.s_500,
+      s_600: material.s_600,
+      s_650: material.s_650,
+      s_700: material.s_700,
+      s_750: material.s_750,
+      s_800: material.s_800,
+      s_850: material.s_850,
+      s_900: material.s_900,
+      s_950: material.s_950,
+      s_1000: material.s_1000,
+      s_1050: material.s_1050,
+      s_1100: material.s_1100,
+      s_1150: material.s_1150,
+      s_1200: material.s_1200,
+      s_1250: material.s_1250,
+      s_1300: material.s_1300,
+      s_1350: material.s_1350,
+      s_1400: material.s_1400,
+      s_1450: material.s_1450,
+      s_1500: material.s_1500,
+      size: material.size,
+      smts: material.smts,
+      smys: material.smys,
+      specification: material.specification,
+      uns: material.uns,
+      w: material.w,
+      y_coeff_id: material.y_coeff_id,
+      update_user: idUsuario,
     },
     validationSchema: Yup.object({
       name: Yup.string().required(),
-      description: Yup.string().required(),
-      class: Yup.string().required(),
-      grade: Yup.string().required(),
       material: Yup.string().required(),
-      material_group: Yup.string().required(),
-      min_temp: Yup.string().required(),
-      smts: Yup.number(),
-      smys: Yup.number(),
-      y_coeff_id: Yup.number().integer().required(),
     }),
     onSubmit: (formMaterial) => {
       console.log(formMaterial);
-      formik.handleReset();
+      dispatch(asyncActualizarRegistroAdmin(formMaterial, token, "Material"));
     },
   });
 
@@ -103,7 +89,7 @@ export const VerMaterial = () => {
           <Button
             variant="contained"
             type="submit"
-            onClick={() => navigate(-1)} //USAR HISTORY
+            onClick={() => navigate(-1)}
           >
             <KeyboardReturnIcon />
             Volver

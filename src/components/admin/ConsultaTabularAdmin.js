@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Box, Button, Select, MenuItem } from "@mui/material/";
+import { Grid, Box, Button, MenuItem } from "@mui/material/";
 import {
   DataGrid,
   GridToolbarContainer,
@@ -14,7 +14,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 import { cambiarVistaConsultaTabularAdmin } from "../../redux/actions/UI";
 
-const ConsultaTabular = ({ name, module, columns, data }) => {
+const ConsultaTabular = ({ name, columns, data }) => {
   const dispatch = useDispatch();
 
   const [pageSize, setPageSize] = useState(10);

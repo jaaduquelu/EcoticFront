@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material/";
+import EditIcon from "@mui/icons-material/Edit";
 
 import CrearDepartamento from "./CrearDepartamento";
 import ConsultaTabular from "../ConsultaTabularAdmin";
@@ -8,6 +11,7 @@ import { vistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
 export const DepartamentosScreen = () => {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   useEffect(() => {
     dispatch(vistaConsultaTabularAdmin());
@@ -17,16 +21,31 @@ export const DepartamentosScreen = () => {
     (state) => state.UI.vistaConsultaTabularAdmin
   );
 
-  // const { idUsuario } = useSelector(state => state.login);
+  //   const { idUsuario } = useSelector(state => state.login);
   //   const proyecto = useSelector(state => state.proyectos.listado.find((pr) => pr.idProyecto == idProyecto));
   //   const reportes = useSelector(state => state.proyectos.reportesCondicion.filter((reporte) => reporte.idProyecto == idProyecto));
 
   const departamentos = useSelector((state) => state.admin.departamentos);
 
   const columnas = [
+    {
+      field: "",
+      headerName: "Editar",
+      width: 80,
+      hideable: false,
+      renderCell: (params) => (
+        <Button
+          variant="contained"
+          onClick={() => navigate("/admin/departamentos/" + params.row.id)}
+        >
+          <EditIcon />
+        </Button>
+      ),
+    },
     { field: "id", headerName: "ID", width: 80, hideable: false },
     { field: "name", headerName: "Nombre", width: 250, hideable: false },
     { field: "short_name", headerName: "Nombre Corto", width: 130 },
+    { field: "description", headerName: "Descripción", width: 260 },
     {
       field: "creation_Date",
       headerName: "Fecha Creación",

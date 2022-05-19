@@ -16,34 +16,34 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { asyncCrearTipoInspeccion } from "../../../redux/actions/admin";
+import {
+  asyncCrearRegistroAdmin,
+  asyncCrearTipoInspeccion,
+} from "../../../redux/actions/admin";
 import { cambiarVistaConsultaTabularAdmin } from "../../../redux/actions/UI";
 
 const CrearTipoInspeccion = () => {
   const dispatch = useDispatch();
 
+  const idUsuario = useSelector((state) => state.auth.idUsuario);
+  const token = useSelector((state) => state.auth.token);
+
   const formik = useFormik({
     initialValues: {
       id: "",
       name: "",
-      short_name: "",
+      shortName: "",
       description: "",
-      for_cr: false,
-      creation_date: new Date().toDateString(),
-      creation_user: "",
-      update_date: new Date().toDateString(),
-      update_user: "",
+      forCr: false,
+      creation_user: idUsuario,
     },
     validationSchema: Yup.object({
       name: Yup.string().required(),
-      description: Yup.string().required(),
-      short_name: Yup.string().required(),
-      // creation_user: Yup.number().required(),
-      // update_user: Yup.number().required(),
+      shortName: Yup.string().required(),
     }),
-    onSubmit: (formTipoInspeccion) => {
-      console.log(formTipoInspeccion);
-      // formik.handleReset();
+    onSubmit: (formSurveyType) => {
+      dispatch(asyncCrearRegistroAdmin(formSurveyType, token, "SurveyType"));
+      formik.handleReset();
     },
   });
 
@@ -87,9 +87,9 @@ const CrearTipoInspeccion = () => {
               required
               label="Nombre Corto"
               margin="normal"
-              name="short_name"
-              error={formik.errors.short_name && formik.touched.short_name}
-              value={formik.values.short_name}
+              name="shortName"
+              error={formik.errors.shortName && formik.touched.shortName}
+              value={formik.values.shortName}
               onChange={formik.handleChange}
             />
           </Grid>
@@ -99,8 +99,8 @@ const CrearTipoInspeccion = () => {
               sx={{ py: 3 }}
               control={
                 <Checkbox
-                  name="for_cr"
-                  checked={formik.values.for_cr}
+                  name="forCr"
+                  checked={formik.values.forCr}
                   onChange={formik.handleChange}
                   color="success"
                 />
@@ -112,7 +112,6 @@ const CrearTipoInspeccion = () => {
           <Grid item xs={12} md={10}>
             <TextField
               fullWidth
-              required
               label="Descripción"
               margin="normal"
               name="description"

@@ -20,6 +20,6 @@ export const types = {
   cargarUnidades: "[Admin] Cargar todos las Unidades",
   cargarLazos: "[Admin] Cargar todos los Lazos",
   cargarTiposInspeccion: "[Admin] Cargar todos los Tipos Inspeccion",
-  cargarMateriales: "[Admin] Cargar todos los Materiales",
+  cargarMateriales: "[Admin] Cargar todos los Materiales ",
   cargarTiposCML: "[Admin] Cargar todos los Tipos de CML",
 };

@@ -17,35 +17,35 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Autorenew } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
-import { asyncCrearUnidad } from "../../../redux/actions/admin";
+import { asyncActualizarRegistroAdmin } from "../../../redux/actions/admin";
 
 export const VerUnidad = () => {
   const dispatch = useDispatch();
+  const { idUnidad } = useParams();
+
   let navigate = useNavigate();
 
-  const { idUnidad } = useParams();
+  const unidad = useSelector((state) =>
+    state.admin.unidades.find((i) => i.id == idUnidad)
+  );
+
+  const idUsuario = useSelector((state) => state.auth.idUsuario);
+  const token = useSelector((state) => state.auth.token);
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      department_id: null,
-      description: "",
-      creation_date: new Date().toDateString(),
-      creation_user: "",
-      update_date: new Date().toDateString(),
-      update_user: "",
+      name: unidad.name,
+      department_id: unidad.department_id,
+      description: unidad.description,
+      update_user: idUsuario,
     },
     validationSchema: Yup.object({
       name: Yup.string().min(5).required(),
-      description: Yup.string().required(),
       department_id: Yup.number().required(),
-      // creation_user: Yup.number().required(),
-      // update_user: Yup.number().required(),
     }),
-    onSubmit: (formUnidad) => {
-      console.log(formUnidad);
-      formik.handleReset();
+    onSubmit: (formUnit) => {
+      console.log(formUnit);
+      dispatch(asyncActualizarRegistroAdmin(formUnit, token, "Unit"));
     },
   });
 
