@@ -12,8 +12,9 @@ import {
   Avatar,
   Button,
   Tooltip,
-  SvgIcon,
+  Stack,
 } from "@mui/material";
+import { useSelector } from "react-redux";
 
 import ButtonLogout from "../auth/ButtonLogout";
 
@@ -23,20 +24,21 @@ const settings = ["Profile", "Account", "Logout"];
 const ResponsiveAppBar = () => {
   const drawerWidth = 300;
 
+  const { nombre, rol } = useSelector((state) => state.auth);
+
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
@@ -70,11 +72,19 @@ const ResponsiveAppBar = () => {
               alt="Ecopetrol"
               style={{ height: "3rem", width: "12rem" }}
             />
-            {/* <img src="../../images/ecopetrol.svg" alt="Ecopetrol" /> */}
           </IconButton>
         </Box>
+        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1 }}>Navegacion</Box>
+          <Box sx={{ flexGrow: 0 }}>
+            <Stack>
+              <Typography variant="h6">{nombre}</Typography>
+              <Typography variant="h7">{rol}</Typography>
+            </Stack>
+          </Box>
+        </Box>
+        {/* FIN MD */}
 
-        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
         {/* TAMAÑO XS */}
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton
@@ -118,12 +128,15 @@ const ResponsiveAppBar = () => {
           component="div"
           sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
         >
-          LOGO
+          EcoTIC
         </Typography>
-        <Box sx={{ flexGrow: 0 }}>
+        {/* FIN XS  */}
+
+        {/* OPCIONES DE PERFIL */}
+        {/* <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="User settings" arrow>
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <Avatar alt="Temy Sharp" src="" />
             </IconButton>
           </Tooltip>
           <Menu
@@ -148,7 +161,8 @@ const ResponsiveAppBar = () => {
               </MenuItem>
             ))}
           </Menu>
-        </Box>
+        </Box> */}
+
         <Box sx={{ flexGrow: 0 }}>
           <ButtonLogout></ButtonLogout>
         </Box>

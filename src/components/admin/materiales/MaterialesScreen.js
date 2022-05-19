@@ -26,7 +26,8 @@ export const MaterialesScreen = () => {
   const columnas = [
     {
       field: "",
-      headerName: "Editar",
+      headerName: "",
+      type: "actions",
       width: 80,
       hideable: false,
       renderCell: (params) => (

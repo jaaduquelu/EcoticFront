@@ -27,6 +27,7 @@ export const LazosScreen = () => {
     {
       field: "",
       headerName: "",
+      type: "actions",
       width: 80,
       hideable: false,
       renderCell: (params) => (
@@ -38,14 +39,37 @@ export const LazosScreen = () => {
         </Button>
       ),
     },
-    { field: "id", headerName: "ID", width: 80, hideable: false },
-    { field: "name", headerName: "Nombre ", width: 140, hideable: false },
-    { field: "description", headerName: "Descripción", width: 260 },
-    { field: "unitId", headerName: "Unidad Id", width: 100 },
+    {
+      field: "id",
+      headerName: "ID",
+      width: 80,
+      hideable: false,
+      renderHeader: () => <strong>ID</strong>,
+    },
+    {
+      field: "name",
+      headerName: "Nombre",
+      width: 140,
+      hideable: false,
+      renderHeader: () => <strong>Nombre</strong>,
+    },
+    {
+      field: "description",
+      headerName: "Descripción",
+      width: 260,
+      renderHeader: () => <strong>Descripción</strong>,
+    },
+    {
+      field: "unitId",
+      headerName: "Unidad",
+      width: 100,
+      renderHeader: () => <strong>Unidad</strong>,
+    },
     {
       field: "creationDate",
       headerName: "Fecha Creación",
       width: 150,
+      renderHeader: () => <strong>Fecha Creación</strong>,
       valueFormatter: (params) => {
         if (params.value == null) {
           return "";
@@ -54,11 +78,17 @@ export const LazosScreen = () => {
         return valueFormatted;
       },
     },
-    { field: "creationUser", headerName: "Usuario Creación", width: 150 },
+    {
+      field: "creationUser",
+      headerName: "Usuario Creación",
+      width: 150,
+      renderHeader: () => <strong>Usuario Creación</strong>,
+    },
     {
       field: "updateDate",
       headerName: "Fecha Actualización",
-      width: 150,
+      width: 180,
+      renderHeader: () => <strong>Fecha Actualización</strong>,
       valueFormatter: (params) => {
         if (params.value == null) {
           return "";
@@ -67,7 +97,12 @@ export const LazosScreen = () => {
         return valueFormatted;
       },
     },
-    { field: "updateUser", headerName: "Usuario Actualización", width: 160 },
+    {
+      field: "updateUser",
+      headerName: "Usuario Actualización",
+      width: 180,
+      renderHeader: () => <strong>Usuario Actualización</strong>,
+    },
   ];
 
   return (

@@ -30,7 +30,9 @@ export const DepartamentosScreen = () => {
   const columnas = [
     {
       field: "",
-      headerName: "Editar",
+      headerName: "",
+      type: "actions",
+      headerClassName: "super-app-theme--header",
       width: 80,
       hideable: false,
       renderCell: (params) => (
@@ -42,14 +44,42 @@ export const DepartamentosScreen = () => {
         </Button>
       ),
     },
-    { field: "id", headerName: "ID", width: 80, hideable: false },
-    { field: "name", headerName: "Nombre", width: 250, hideable: false },
-    { field: "short_name", headerName: "Nombre Corto", width: 130 },
-    { field: "description", headerName: "Descripción", width: 260 },
+    {
+      field: "id",
+      headerName: "ID",
+      headerClassName: "super-app-theme--header",
+      width: 80,
+      hideable: false,
+      renderHeader: () => <strong>ID</strong>,
+    },
+    {
+      field: "name",
+      headerName: "Nombre",
+      headerClassName: "super-app-theme--header",
+      width: 250,
+      hideable: false,
+      renderHeader: () => <strong>Nombre</strong>,
+    },
+    {
+      field: "short_name",
+      headerName: "Nombre Corto",
+      headerClassName: "super-app-theme--header",
+      width: 130,
+      renderHeader: () => <strong>Nombre Corto</strong>,
+    },
+    {
+      field: "description",
+      headerName: "Descripción",
+      headerClassName: "super-app-theme--header",
+      width: 260,
+      renderHeader: () => <strong>Descripción</strong>,
+    },
     {
       field: "creation_Date",
       headerName: "Fecha Creación",
+      headerClassName: "super-app-theme--header",
       width: 150,
+      renderHeader: () => <strong>Fecha Creación</strong>,
       valueFormatter: (params) => {
         if (params.value == null) {
           return "";
@@ -58,11 +88,19 @@ export const DepartamentosScreen = () => {
         return valueFormatted;
       },
     },
-    { field: "creation_User", headerName: "Usuario Creación", width: 200 },
+    {
+      field: "creation_User",
+      headerName: "Usuario Creación",
+      headerClassName: "super-app-theme--header",
+      width: 200,
+      renderHeader: () => <strong>Usuario Creación</strong>,
+    },
     {
       field: "update_Date",
       headerName: "Fecha Actualización",
-      width: 150,
+      headerClassName: "super-app-theme--header",
+      width: 170,
+      renderHeader: () => <strong>Fecha Actualización</strong>,
       valueFormatter: (params) => {
         if (params.value == null) {
           return "";
@@ -71,7 +109,13 @@ export const DepartamentosScreen = () => {
         return valueFormatted;
       },
     },
-    { field: "update_User", headerName: "Usuario Actualización", width: 250 },
+    {
+      field: "update_User",
+      headerName: "Usuario Actualización",
+      headerClassName: "super-app-theme--header",
+      width: 250,
+      renderHeader: () => <strong>Usuario Actualización</strong>,
+    },
   ];
 
   return (

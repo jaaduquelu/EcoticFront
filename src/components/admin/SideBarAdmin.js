@@ -39,22 +39,6 @@ const SideBarAdmin = ({ drawerWidth }) => {
       <Toolbar />
       <List>
         <ListItemButton
-          selected={selectedIndex === 6}
-          onClick={(event) => {
-            navigate("/admin/accesos");
-            handleListItemClick(event, 6);
-          }}
-          sx={{ py: 2 }}
-        >
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText>Accesos</ListItemText>
-        </ListItemButton>
-
-        <Divider />
-
-        <ListItemButton
           selected={selectedIndex === 0}
           onClick={(event) => {
             navigate("/admin/departamentos");
@@ -65,7 +49,9 @@ const SideBarAdmin = ({ drawerWidth }) => {
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText>Departamentos</ListItemText>
+          <ListItemText>
+            <strong>Departamentos</strong>
+          </ListItemText>
         </ListItemButton>
 
         <Divider />
@@ -81,7 +67,9 @@ const SideBarAdmin = ({ drawerWidth }) => {
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText>Unidades</ListItemText>
+          <ListItemText>
+            <strong>Unidades</strong>
+          </ListItemText>
         </ListItemButton>
 
         <Divider />
@@ -97,7 +85,9 @@ const SideBarAdmin = ({ drawerWidth }) => {
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText>Lazos de corrosión</ListItemText>
+          <ListItemText>
+            <strong>Lazos de corrosión</strong>
+          </ListItemText>
         </ListItemButton>
 
         <Divider />
@@ -113,7 +103,9 @@ const SideBarAdmin = ({ drawerWidth }) => {
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText>Tipos de Inspección</ListItemText>
+          <ListItemText>
+            <strong>Tipos de Inspección</strong>
+          </ListItemText>
         </ListItemButton>
 
         <Divider />
@@ -129,7 +121,9 @@ const SideBarAdmin = ({ drawerWidth }) => {
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText>Materiales</ListItemText>
+          <ListItemText>
+            <strong>Materiales</strong>
+          </ListItemText>
         </ListItemButton>
 
         <Divider />
@@ -145,8 +139,29 @@ const SideBarAdmin = ({ drawerWidth }) => {
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText>Tipos de CMLS</ListItemText>
+          <ListItemText>
+            <strong>Tipos de CMLS</strong>
+          </ListItemText>
         </ListItemButton>
+
+        <Divider />
+
+        <ListItemButton
+          selected={selectedIndex === 6}
+          onClick={(event) => {
+            navigate("/admin/accesos");
+            handleListItemClick(event, 6);
+          }}
+          sx={{ py: 2 }}
+        >
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText>
+            <strong>Accesos</strong>
+          </ListItemText>
+        </ListItemButton>
+
         <Divider />
       </List>
     </Drawer>

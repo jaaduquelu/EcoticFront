@@ -61,15 +61,28 @@ const ConsultaTabular = ({ name, columns, data }) => {
         </Grid>
       </Grid>
       <hr></hr>
-      <Box fullWidth sx={{ py: 3 }}>
+      <Box
+        fullWidth
+        sx={{
+          py: 3,
+          "& .super-app-theme--header": {
+            backgroundColor: "thirdy.main",
+            height: "4vh",
+            marginTop: "2vh",
+          },
+        }}
+      >
         <div style={{ height: "80vh", width: "100%" }}>
           <DataGrid
+            autoHeight
             columns={columns}
             rows={data}
             pageSize={pageSize}
+            // rowHeight={45}
             onPageSizeChange={(newPage) => setPageSize(newPage)}
             rowsPerPageOptions={[10, 25, 50]}
             pagination
+            disableColumnMenu
             componentsProps={{
               toolbar: { printOptions: { disableToolbarButton: true } },
             }}
