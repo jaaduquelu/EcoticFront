@@ -32,8 +32,11 @@ export const VerUnidad = () => {
   const idUsuario = useSelector((state) => state.auth.idUsuario);
   const token = useSelector((state) => state.auth.token);
 
+  const departamentos = useSelector((state) => state.admin.departamentos);
+
   const formik = useFormik({
     initialValues: {
+      id: unidad.id,
       name: unidad.name,
       department_id: unidad.department_id,
       description: unidad.description,
@@ -44,7 +47,6 @@ export const VerUnidad = () => {
       department_id: Yup.number().required(),
     }),
     onSubmit: (formUnit) => {
-      console.log(formUnit);
       dispatch(asyncActualizarRegistroAdmin(formUnit, token, "Unit"));
     },
   });
@@ -83,11 +85,10 @@ export const VerUnidad = () => {
                 }
                 value={formik.values.department_id}
                 onChange={formik.handleChange}
-                // renderValue={(value) => `⚠️  - ${value}`}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {departamentos.map((i) => (
+                  <MenuItem value={i.id}>{i.name}</MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>

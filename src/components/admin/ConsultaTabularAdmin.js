@@ -74,7 +74,6 @@ const ConsultaTabular = ({ name, columns, data }) => {
       >
         <div style={{ height: "80vh", width: "100%" }}>
           <DataGrid
-            autoHeight
             columns={columns}
             rows={data}
             pageSize={pageSize}

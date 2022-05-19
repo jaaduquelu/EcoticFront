@@ -8,7 +8,8 @@ const initialState = {
   materiales: [],
   tiposCML: [],
   accesos: [],
-  otros: [],
+  roles: [],
+  usuarios: [],
 };
 
 export const adminReducer = (state = initialState, action) => {
@@ -47,6 +48,18 @@ export const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         tiposCML: [...action.payload],
+      };
+
+    case types.cargarRoles:
+      return {
+        ...state,
+        roles: [...action.payload],
+      };
+
+    case types.cargarUsuarios:
+      return {
+        ...state,
+        usuarios: [...action.payload],
       };
 
     default:

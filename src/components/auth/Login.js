@@ -18,7 +18,7 @@ const Home = () => {
       alignItems="center"
       justify="center"
       container
-      mt={5}
+      mt={7}
     >
       <img src={Logo} alt="Aro Ecopetrol" width={400} height={200} />
       <Box sx={{ mt: 4 }} />
@@ -60,10 +60,10 @@ const Home = () => {
       )}
 
       <span style={{ fontSize: 10 }}>
-        <Typography align="center">
+        <Typography align="center" sx={{ mt: 5 }}>
           <b>{projectInfo.recommendedBrowsers}</b>
         </Typography>
-        <Typography align="center">
+        <Typography align="center" sx={{ mt: 5 }}>
           Copyright &copy; {projectInfo.versionYear} - {projectInfo.name}{" "}
           {projectInfo.version}&nbsp; Desarrollado para {projectInfo.developTo}
           <br />

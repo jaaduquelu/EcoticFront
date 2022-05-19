@@ -13,14 +13,15 @@ import { asyncConsultarDatosUsuario } from "../../redux/actions/auth";
 
 const ButtonLogin = () => {
   const { instance } = useMsal();
+  let navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
     await instance
       .loginPopup(loginRequest)
-      .then(async (response) => {
-        console.log(response.accessToken);
-        await dispatch({
+      .then((response) => {
+        navigate("/admin/");
+        dispatch({
           type: types.renovarToken,
           payload: response.accessToken,
         });
@@ -28,7 +29,8 @@ const ButtonLogin = () => {
       })
       .catch((error) => {
         Swal.fire(error, "Error", "error");
-      });
+      })
+      .finally(navigate("/admin/"));
   };
 
   return (

@@ -61,8 +61,18 @@ const cargarTiposCML = (datos) => ({
   payload: datos,
 });
 
+const cargarRoles = (datos) => ({
+  type: types.cargarRoles,
+  payload: datos,
+});
+
+const cargarUsuarios = (datos) => ({
+  type: types.cargarUsuarios,
+  payload: datos,
+});
+
 const token2 =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJhcGk6Ly9mNzNhYTdmMy01MmE4LTQyNjAtOGM0NC1lZWEwMjQ1OWJmNjMiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9hNDMwNTk4Ny1jZjc4LTRmOTMtOWQ2NC1iZjE4YWY2NTM5N2IvIiwiaWF0IjoxNjUyOTMwNzU0LCJuYmYiOjE2NTI5MzA3NTQsImV4cCI6MTY1MjkzNTA4MSwiYWNyIjoiMSIsImFpbyI6IkFWUUFxLzhUQUFBQWlGVjFhbkNiYlVSUnZBVEtNOXppc2llMzVSdlJZNDhlRkZHNHpESHRKWWFwcmtvZEVjRVlsbTAxWDZVdnRBY3orSnlXREtJVkloZHVpQkJFSlp2YmdURFFYYXhZQTVxL0lIY0hEZVJTQ3drPSIsImFtciI6WyJwd2QiLCJtZmEiXSwiYXBwaWQiOiJmNzNhYTdmMy01MmE4LTQyNjAtOGM0NC1lZWEwMjQ1OWJmNjMiLCJhcHBpZGFjciI6IjAiLCJmYW1pbHlfbmFtZSI6IkR1cXVlIEx1Z28iLCJnaXZlbl9uYW1lIjoiSmF2aWVyIiwiaXBhZGRyIjoiMTg2LjE1OS43LjEzMCIsIm5hbWUiOiJKYXZpZXIgRHVxdWUgTHVnbyAoSW5kcmEgQ29sb21iaWEpIiwib2lkIjoiOWUwOTVhMTYtMWJkMS00N2IzLWI1MzktMzgyYmJhMWQzNjQ4Iiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTEwNzczNjc3MTctMTYyMzI4NTEyNi0xMDkzNjI1MDY5LTQ1NDEwOCIsInJoIjoiMC5BUW9BaDFrd3BIalBrMC1kWkw4WXIyVTVlX09uT3Zlb1VtQkNqRVR1b0NSWnYyTUtBRUkuIiwic2NwIjoiYWNjZXNzX2FzX3VzZXIiLCJzdWIiOiJlMXo5TGc1MVJfbEFPeUlkVEZNN3pvMTFRRy1zTzZ1OU1RZ1pibC1fbGtBIiwidGlkIjoiYTQzMDU5ODctY2Y3OC00ZjkzLTlkNjQtYmYxOGFmNjUzOTdiIiwidW5pcXVlX25hbWUiOiJqYXZpZXIuZHVxdWVsdUBlY29wZXRyb2wuY29tLmNvIiwidXBuIjoiamF2aWVyLmR1cXVlbHVAZWNvcGV0cm9sLmNvbS5jbyIsInV0aSI6Imx1Y1FrYk9Fb0VxYUxiUlg5YUlyQUEiLCJ2ZXIiOiIxLjAifQ.iZdsLfG0zcZeUcXBlSEtWu0TP7KzCER-tBBSM-75P6w1OjcLfLzdzCG4ffFK1HU51mOzpSRAind6Ruza6qavfGMo3d9-qp3Sivw1HZdCd4Y4J9x8VfcY_3z6lnkiFUDkuLJhFBtQxQm5KUVJnu1uB-EbVPogs6SOJOnptfW2YNTT1N04X3fcjilrefCAjoFXc-PCtDz6n6PMGvWeQ0R__vFtAoMixqmuQQSUk24CLktyU97BxIscVID12Y1KWf1cgbAc1sEOETokIgZwUPS8ntS2IwedK7qwZZgWcoe9LtbdwmRdU44eSNplP1zNXA8-JcZxrFLlaK6NafdokpVAfA";
+  "eyJ0eXAiOiJKV1QiLCJhbGciOi JSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJhcGk6Ly9mNzNhYTdmMy01MmE4LTQyNjAtOGM0NC1lZWEwMjQ1OWJmNjMiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9hNDMwNTk4Ny1jZjc4LTRmOTMtOWQ2NC1iZjE4YWY2NTM5N2IvIiwiaWF0IjoxNjUyOTMwNzU0LCJuYmYiOjE2NTI5MzA3NTQsImV4cCI6MTY1MjkzNTA4MSwiYWNyIjoiMSIsImFpbyI6IkFWUUFxLzhUQUFBQWlGVjFhbkNiYlVSUnZBVEtNOXppc2llMzVSdlJZNDhlRkZHNHpESHRKWWFwcmtvZEVjRVlsbTAxWDZVdnRBY3orSnlXREtJVkloZHVpQkJFSlp2YmdURFFYYXhZQTVxL0lIY0hEZVJTQ3drPSIsImFtciI6WyJwd2QiLCJtZmEiXSwiYXBwaWQiOiJmNzNhYTdmMy01MmE4LTQyNjAtOGM0NC1lZWEwMjQ1OWJmNjMiLCJhcHBpZGFjciI6IjAiLCJmYW1pbHlfbmFtZSI6IkR1cXVlIEx1Z28iLCJnaXZlbl9uYW1lIjoiSmF2aWVyIiwiaXBhZGRyIjoiMTg2LjE1OS43LjEzMCIsIm5hbWUiOiJKYXZpZXIgRHVxdWUgTHVnbyAoSW5kcmEgQ29sb21iaWEpIiwib2lkIjoiOWUwOTVhMTYtMWJkMS00N2IzLWI1MzktMzgyYmJhMWQzNjQ4Iiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTEwNzczNjc3MTctMTYyMzI4NTEyNi0xMDkzNjI1MDY5LTQ1NDEwOCIsInJoIjoiMC5BUW9BaDFrd3BIalBrMC1kWkw4WXIyVTVlX09uT3Zlb1VtQkNqRVR1b0NSWnYyTUtBRUkuIiwic2NwIjoiYWNjZXNzX2FzX3VzZXIiLCJzdWIiOiJlMXo5TGc1MVJfbEFPeUlkVEZNN3pvMTFRRy1zTzZ1OU1RZ1pibC1fbGtBIiwidGlkIjoiYTQzMDU5ODctY2Y3OC00ZjkzLTlkNjQtYmYxOGFmNjUzOTdiIiwidW5pcXVlX25hbWUiOiJqYXZpZXIuZHVxdWVsdUBlY29wZXRyb2wuY29tLmNvIiwidXBuIjoiamF2aWVyLmR1cXVlbHVAZWNvcGV0cm9sLmNvbS5jbyIsInV0aSI6Imx1Y1FrYk9Fb0VxYUxiUlg5YUlyQUEiLCJ2ZXIiOiIxLjAifQ.iZdsLfG0zcZeUcXBlSEtWu0TP7KzCER-tBBSM-75P6w1OjcLfLzdzCG4ffFK1HU51mOzpSRAind6Ruza6qavfGMo3d9-qp3Sivw1HZdCd4Y4J9x8VfcY_3z6lnkiFUDkuLJhFBtQxQm5KUVJnu1uB-EbVPogs6SOJOnptfW2YNTT1N04X3fcjilrefCAjoFXc-PCtDz6n6PMGvWeQ0R__vFtAoMixqmuQQSUk24CLktyU97BxIscVID12Y1KWf1cgbAc1sEOETokIgZwUPS8ntS2IwedK7qwZZgWcoe9LtbdwmRdU44eSNplP1zNXA8-JcZxrFLlaK6NafdokpVAfA";
 export const asyncCargarDatosAdmin = (token) => {
   return async (dispatch) => {
     const requestOptions = {
@@ -70,10 +80,26 @@ export const asyncCargarDatosAdmin = (token) => {
       headers: {
         "Content-Type": "application/json",
         "Ocp-Apim-Subscription-Key": "12d775a6fc604fe791251ea9be5ca824",
-        Authorization: "Bearer " + token2,
+        Authorization: "Bearer " + token,
       },
     };
     try {
+      const responseRole = await fetch(`${url}/api/Auth/roles`, requestOptions);
+      const roles = await responseRole.json();
+      if (responseRole.ok) {
+        dispatch(cargarRoles(roles));
+      } else {
+        Swal.fire("Se presento un error cargando los Roles", "", "error");
+      }
+
+      const responseUser = await fetch(`${url}/api/Auth/users`, requestOptions);
+      const usuarios = await responseUser.json();
+      if (responseUser.ok) {
+        dispatch(cargarUsuarios(usuarios));
+      } else {
+        Swal.fire("Se presento un error cargando los Usuarios ", "", "error");
+      }
+
       const responseDepartment = await fetch(
         `${url}/api/Department`,
         requestOptions
@@ -89,25 +115,22 @@ export const asyncCargarDatosAdmin = (token) => {
         );
       }
 
-      // const responseUnit = await fetch(`${url}/api/Unit`, requestOptions);
-      // const unidades = await responseUnit.json();
-      // if (responseUnit.ok) {
-      //   dispatch(cargarUnidades(unidades));
-      //   console.log("Unidades OK");
-      //   console.log(unidades);
-      // } else {
-      //   console.log(responseUnit);
-      //   console.log(unidades);
-      //   Swal.fire("Se presento un error cargando las Unidades", "", "error");
-      // }
+      const responseUnit = await fetch(`${url}/api/Unit`, requestOptions);
+      const unidades = await responseUnit.json();
+      if (responseUnit.ok) {
+        dispatch(cargarUnidades(unidades));
+      } else {
+        console.log(responseUnit);
+        console.log(unidades);
+        Swal.fire("Se presento un error cargando las Unidades", "", "error");
+      }
 
       const responseLoop = await fetch(
-        `${url}/api/CorrosionLoop`,
+        `${url}/api/CorrosionLoop/get-all`,
         requestOptions
       );
       const lazos = await responseLoop.json();
       if (responseLoop.ok) {
-        console.log("Lazos OK");
         dispatch(cargarLazos(lazos));
       } else {
         console.log(responseLoop);
@@ -119,12 +142,11 @@ export const asyncCargarDatosAdmin = (token) => {
       }
 
       const responseMaterial = await fetch(
-        `${url}/api/Material`,
+        `${url}/api/Material/get-all`,
         requestOptions
       );
       const materiales = await responseMaterial.json();
       if (responseMaterial.ok) {
-        console.log("Materiales OK");
         dispatch(cargarMateriales(materiales));
       } else {
         console.log(responseMaterial);
@@ -139,7 +161,6 @@ export const asyncCargarDatosAdmin = (token) => {
       const tiposInspeccion = await responseSurvey.json();
       if (responseSurvey.ok) {
         dispatch(cargarTiposInspeccion(tiposInspeccion));
-        console.log("Tipos Inspección OK");
       } else {
         console.log(responseSurvey);
         console.log(tiposInspeccion);
@@ -154,7 +175,6 @@ export const asyncCargarDatosAdmin = (token) => {
       const tiposCML = await responseCML.json();
       if (responseCML.ok) {
         dispatch(cargarTiposCML(tiposCML));
-        console.log("Tipos CML OK");
       } else {
         console.log(responseCML);
         console.log(tiposCML);
@@ -165,7 +185,7 @@ export const asyncCargarDatosAdmin = (token) => {
         );
       }
     } catch (error) {
-      console.log(error.json());
+      console.log(error);
       Swal.fire(
         "Se presento un error cargando los datos de Administración ",
         "",

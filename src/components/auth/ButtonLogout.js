@@ -6,6 +6,8 @@ import IconButton from "@mui/material/IconButton";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Swal from "sweetalert2";
 
+import { types } from "../../redux/types";
+
 const ButtonLogout = () => {
   const { instance } = useMsal();
   const dispatch = useDispatch();
@@ -17,6 +19,12 @@ const ButtonLogout = () => {
         postLogoutRedirectUri: "/login",
         mainWindowRedirectUri: "/",
       })
+      .then(
+        dispatch({
+          type: types.cerrarSesion,
+          payload: "",
+        })
+      )
       .catch((error) => {
         Swal.fire(error, "", "error");
       });

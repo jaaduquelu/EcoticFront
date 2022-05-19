@@ -83,7 +83,9 @@ export const CrearLazo = () => {
                 onChange={formik.handleChange}
               >
                 {unidades.map((i) => (
-                  <MenuItem value={i.id}>{i.name}</MenuItem>
+                  <MenuItem value={i.id}>
+                    {i.id} - {i.name}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>

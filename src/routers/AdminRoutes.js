@@ -23,6 +23,8 @@ import { VerTipoInspeccion } from "../components/admin/tiposInspeccion/VerTipoIn
 import { VerMaterial } from "../components/admin/materiales/VerMaterial";
 import { AccesosScreen } from "../components/admin/accesos/AccesosScreen";
 
+import Error404 from "../components/general/Error404";
+
 //Consumo de las APIs de Admin
 import { asyncCargarDatosAdmin } from "../redux/actions/admin";
 import { VerTipoCML } from "../components/admin/tiposCML/verTipoCML";
@@ -95,7 +97,7 @@ export const AdminRoutes = () => {
             <Route path="tiposCML" element={<TiposCMLScreen />} />
             <Route path="tiposCML/:idTipoCML" element={<VerTipoCML />} />
 
-            <Route path="*" element={<div>Error 404</div>} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </Box>
       </Box>

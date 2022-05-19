@@ -42,6 +42,7 @@ export const LazosScreen = () => {
     {
       field: "id",
       headerName: "ID",
+      headerClassName: "super-app-theme--header",
       width: 80,
       hideable: false,
       renderHeader: () => <strong>ID</strong>,
@@ -49,6 +50,7 @@ export const LazosScreen = () => {
     {
       field: "name",
       headerName: "Nombre",
+      headerClassName: "super-app-theme--header",
       width: 140,
       hideable: false,
       renderHeader: () => <strong>Nombre</strong>,
@@ -56,18 +58,21 @@ export const LazosScreen = () => {
     {
       field: "description",
       headerName: "Descripción",
+      headerClassName: "super-app-theme--header",
       width: 260,
       renderHeader: () => <strong>Descripción</strong>,
     },
     {
       field: "unitId",
       headerName: "Unidad",
+      headerClassName: "super-app-theme--header",
       width: 100,
       renderHeader: () => <strong>Unidad</strong>,
     },
     {
       field: "creationDate",
       headerName: "Fecha Creación",
+      headerClassName: "super-app-theme--header",
       width: 150,
       renderHeader: () => <strong>Fecha Creación</strong>,
       valueFormatter: (params) => {
@@ -81,12 +86,14 @@ export const LazosScreen = () => {
     {
       field: "creationUser",
       headerName: "Usuario Creación",
+      headerClassName: "super-app-theme--header",
       width: 150,
       renderHeader: () => <strong>Usuario Creación</strong>,
     },
     {
       field: "updateDate",
       headerName: "Fecha Actualización",
+      headerClassName: "super-app-theme--header",
       width: 180,
       renderHeader: () => <strong>Fecha Actualización</strong>,
       valueFormatter: (params) => {
@@ -100,6 +107,7 @@ export const LazosScreen = () => {
     {
       field: "updateUser",
       headerName: "Usuario Actualización",
+      headerClassName: "super-app-theme--header",
       width: 180,
       renderHeader: () => <strong>Usuario Actualización</strong>,
     },

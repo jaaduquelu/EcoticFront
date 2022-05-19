@@ -42,7 +42,7 @@ export const TiposInspeccionScreen = () => {
     { field: "name", headerName: "Nombre", width: 250, hideable: false },
     { field: "shortName", headerName: "Nombre Corto", width: 100 },
     { field: "description", headerName: "Descripción", width: 400 },
-    { field: "forCr", headerName: "For Cr", width: 100 },
+    { field: "forCr", headerName: "For Cr", width: 100, type: "boolean" },
   ];
 
   return (

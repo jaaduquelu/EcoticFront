@@ -10,18 +10,19 @@ import {
   GridToolbarFilterButton,
 } from "@mui/x-data-grid";
 
-const actualizarRol = (usuario, select) => {
-  console.log("value", select.value);
+const actualizarRol = (usuario, select, roles, dispatch) => {
   Swal.fire({
-    title: `¿Desea cambiar el rol de por ${select.value} ?`,
+    title: `¿Desea cambiar el rol de ${usuario.name} por ${
+      roles.find((r) => r.id == select.value).name
+    } ?`,
     showDenyButton: true,
     showCancelButton: false,
-    confirmButtonText: "Guardar",
+    confirmButtonText: "Confirmar",
     confirmButtonColor: "#4BB543",
     denyButtonText: `Cancelar`,
   }).then((result) => {
     if (result.isConfirmed) {
-      //funciona asincrona
+      // dispatch(asyncActualizarRegistroAdmin(usuario, select.value, token, "Auth/roles"));
       Swal.fire("Se actualizo exitosamente!", "", "success");
     }
   });
@@ -30,109 +31,35 @@ const actualizarRol = (usuario, select) => {
 export const AccesosScreen = () => {
   const dispatch = useDispatch();
 
+  const roles = useSelector((state) => state.admin.roles);
+  const usuario = useSelector((state) => state.admin.usuarios);
+  const token = useSelector((state) => state.auth.token);
+
   const [pageSize, setPageSize] = useState(10);
 
   const columnas = [
     { field: "id", headerName: "ID", width: 100, hideable: false },
-    { field: "user", headerName: "Usuario", width: 360 },
-    { field: "email", headerName: "Email", width: 260, renderHeader: () => {} },
-    // {
-    //   field: "age",
-    //   headerName: "Age",
-    //   minWidth: 50,
-    //   valueParser: (value) => Number(value) / 100,
-    //   disableExport: true,
-    // },
+    { field: "name", headerName: "Usuario", width: 360 },
+    { field: "email", headerName: "Email", width: 300, renderHeader: () => {} },
     {
       field: "country",
       headerName: "Rol",
-      width: 280,
+      width: 260,
       renderCell: (params) => (
         <Select
           label="Rol"
-          value={params.row.id}
-          onChange={(value) => actualizarRol(params.row, value.target)}
+          value={roles.find((r) => r.name == params.row.roleName).id}
+          onChange={(value) =>
+            actualizarRol(params.row, value.target, roles, dispatch, token)
+          }
         >
-          <MenuItem value={10}>Examinador</MenuItem>
-          <MenuItem value={20}>Inspector</MenuItem>
-          <MenuItem value={30}>Administrado</MenuItem>
+          {roles.map((i) => (
+            <MenuItem key={i.id} value={i.id}>
+              {i.name}
+            </MenuItem>
+          ))}
         </Select>
       ),
-    },
-  ];
-
-  const rows = [
-    {
-      id: 1,
-      username: "@MUI",
-      age: 38,
-      desk: "D-546",
-    },
-    {
-      id: 2,
-      username: "@MUI-X",
-      age: 25,
-      desk: "D-042dfsgfdsgfdsgfdsgfsdgfdgfsdgfdgdfs",
-    },
-    {
-      id: 3,
-      username: "@MUI",
-      age: 38,
-      desk: "D-546",
-    },
-    {
-      id: 4,
-      username: "@MUI-X",
-      age: 25,
-      desk: "D-042",
-    },
-    {
-      id: 5,
-      username: "@MUI",
-      age: 38,
-      desk: "D-546",
-    },
-    {
-      id: 6,
-      username: "@MUI-X",
-      age: 25,
-      desk: "D-042",
-    },
-    {
-      id: 7,
-      username: "@MUI",
-      age: 38,
-      desk: "D-546",
-    },
-    {
-      id: 8,
-      username: "@MUI-X",
-      age: 25,
-      desk: "D-042",
-    },
-    {
-      id: 9,
-      username: "@MUI",
-      age: 38,
-      desk: "D-546",
-    },
-    {
-      id: 10,
-      username: "@MUI-X",
-      age: 25,
-      desk: "D-042",
-    },
-    {
-      id: 11,
-      username: "@MUI",
-      age: 4,
-      desk: "D-546",
-    },
-    {
-      id: 12,
-      username: "@MUI-X",
-      age: 5,
-      desk: "D-042",
     },
   ];
 
@@ -175,7 +102,7 @@ export const AccesosScreen = () => {
           <div style={{ height: "80vh", width: "100%" }}>
             <DataGrid
               columns={columnas}
-              rows={rows}
+              rows={usuario}
               pageSize={pageSize}
               onPageSizeChange={(newPage) => setPageSize(newPage)}
               rowsPerPageOptions={[10, 25, 50]}

@@ -75,7 +75,7 @@ const ResponsiveAppBar = () => {
           </IconButton>
         </Box>
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-          <Box sx={{ flexGrow: 1 }}>Navegacion</Box>
+          <Box sx={{ flexGrow: 1 }}></Box>
           <Box sx={{ flexGrow: 0 }}>
             <Stack>
               <Typography variant="h6">{nombre}</Typography>

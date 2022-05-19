@@ -22,4 +22,6 @@ export const types = {
   cargarTiposInspeccion: "[Admin] Cargar todos los Tipos Inspeccion",
   cargarMateriales: "[Admin] Cargar todos los Materiales ",
   cargarTiposCML: "[Admin] Cargar todos los Tipos de CML",
+  cargarRoles: "[Admin] Cargar todos los Roles",
+  cargarUsuarios: "[Admin] Cargar todos los Usuarios",
 };
